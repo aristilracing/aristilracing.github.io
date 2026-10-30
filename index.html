@@ -1,69 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARISTIL RACING</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #101522;
-            color: white;
-            text-align: center;
-        }
-        header {
-            background: #080c16;
-            padding: 25px;
-            border-bottom: 3px solid #e63946;
-        }
-        h1 {
-            color: #e63946;
-            font-size: 32px;
-        }
-        .hero {
-            padding: 70px 15px;
-        }
-        .hero h2 {
-            font-size: 28px;
-        }
-        .hero p {
-            color: #ccc;
-            font-size: 17px;
-        }
-        .button {
-            display: inline-block;
-            background: #e63946;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-        footer {
-            padding: 25px;
-            color: #999;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d18">
+  <meta name="description" content="Bienvenue sur le site officiel d'ARISTIL RACING. Découvre le jeu, les courses et les championnats.">
+  <title>ARISTIL RACING — Site officiel</title>
+  <style>
+    :root{--bg:#090d18;--panel:#141c2c;--red:#e63946;--muted:#b8c0cf;--line:#293449}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#fff;line-height:1.6}
+    header{padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#070a12;border-bottom:1px solid var(--line)}
+    .brand{font-size:clamp(20px,4vw,28px);font-weight:900;letter-spacing:1.5px;color:#fff}
+    .brand span{color:var(--red)}
+    nav{display:flex;gap:18px;flex-wrap:wrap}
+    nav a{color:var(--muted);text-decoration:none;font-size:14px}
+    nav a:hover{color:#fff}
+    .hero{padding:76px 18px 68px;text-align:center;background:radial-gradient(ellipse at top,#26334b 0%,#101827 42%,var(--bg) 78%)}
+    .tag{display:inline-block;padding:6px 13px;border:1px solid #65404a;border-radius:30px;color:#ff9aa2;font-size:12px;font-weight:bold;letter-spacing:1px}
+    h1{font-size:clamp(36px,8vw,64px);line-height:1.08;margin:20px 0 12px;letter-spacing:1px}
+    h1 span{color:var(--red)}
+    .hero p{max-width:620px;margin:0 auto 26px;color:var(--muted);font-size:17px}
+    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .button{display:inline-block;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:bold}
+    .primary{background:var(--red);color:#fff}
+    .secondary{border:1px solid #647087;color:#fff}
+    .button:hover{filter:brightness(1.12)}
+    main{max-width:1050px;margin:auto;padding:38px 18px 55px}
+    .section-title{text-align:center;margin:0 0 8px;font-size:27px}
+    .section-sub{text-align:center;color:var(--muted);margin:0 auto 26px;max-width:600px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:22px}
+    .card .icon{font-size:28px}
+    .card h3{margin:8px 0 5px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .version{margin-top:28px;padding:22px;border-radius:13px;background:#211923;border:1px solid #63313b;text-align:center}
+    .version strong{color:#ff9aa2}
+    .version p{color:var(--muted);margin:6px 0 15px}
+    footer{text-align:center;padding:25px 15px;border-top:1px solid var(--line);color:#8791a3;font-size:13px}
+    @media(max-width:600px){header{flex-direction:column}nav{justify-content:center;gap:13px}.hero{padding-top:55px}}
+  </style>
 </head>
 <body>
+  <header>
+    <div class="brand">ARISTIL <span>RACING</span></div>
+    <nav aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#univers">Le jeu</a>
+      <a href="jeu.html">Courses</a>
+    </nav>
+  </header>
 
-<header>
-    <h1>ARISTIL RACING</h1>
-    <p>La passion de la course automobile</p>
-</header>
+  <section class="hero" id="accueil">
+    <span class="tag">SITE OFFICIEL</span>
+    <h1>PRENDS LE VOLANT.<br><span>VIS LA COURSE.</span></h1>
+    <p>Bienvenue dans ARISTIL RACING : découvre un univers de courses automobiles, relève les défis et progresse vers la victoire.</p>
+    <div class="actions">
+      <a class="button primary" href="ARISTIL_RACING_47_PHARES_DU_PILOTE.html">▶ JOUER À LA VERSION 47.0</a>
+      <a class="button secondary" href="jeu.html">Découvrir les courses</a>
+    </div>
+  </section>
 
-<section class="hero">
-    <h2>Bienvenue dans ARISTIL RACING</h2>
-    <p>Découvrez notre univers de courses automobiles.</p>
-    <p>Vitesse, compétition et adrénaline !</p>
-    <a class="button" href="jeu.html">Découvrir le jeu</a>
-</section>
+  <main id="univers">
+    <h2 class="section-title">L'univers ARISTIL RACING</h2>
+    <p class="section-sub">Prépare-toi à prendre le départ et à découvrir les différentes possibilités du jeu.</p>
+    <div class="cards">
+      <article class="card">
+        <div class="icon">🏁</div>
+        <h3>Courses</h3>
+        <p>Accède à la page du jeu et découvre les possibilités de course disponibles.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🏆</div>
+        <h3>Championnats</h3>
+        <p>Explore l'espace consacré aux championnats et aux défis de compétition.</p>
+      </article>
+      <article class="card">
+        <div class="icon">🚗</div>
+        <h3>Expérience de pilotage</h3>
+        <p>Retrouve le jeu et ses fonctionnalités dans la version jouable proposée.</p>
+      </article>
+    </div>
 
-<footer>
-    © 2026 ARISTIL RACING
-    <p>Tous droits réservés.</p>
-</footer>
+    <section class="version">
+      <strong>VERSION JOUABLE : 47.0</strong>
+      <p>La version actuelle est accessible directement depuis le site.</p>
+      <a class="button primary" href="ARISTIL_RACING_47_PHARES_DU_PILOTE.html">Lancer le jeu</a>
+    </section>
+  </main>
 
+  <footer>
+    © 2026 ARISTIL RACING — Tous droits réservés.
+  </footer>
 </body>
 </html>
