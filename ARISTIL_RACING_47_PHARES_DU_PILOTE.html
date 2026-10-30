@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ARISTIL RACING 47.0 — Phares du pilote</title>
+<style>
+:root{--gold:#ffd447;--red:#e63946;--blue:#1d4ed8;--dark:#080d18;--panel:#121c2c;--muted:#a9b5c9}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:12px}body{margin:0;background:radial-gradient(circle at 15% 0,#1d4ed866,transparent 34%),radial-gradient(circle at 90% 10%,#e6394655,transparent 32%),radial-gradient(circle at 50% 0,#20385a,#080d18 60%);color:#fff;font-family:system-ui,Arial,sans-serif;min-height:100vh}button{font:inherit;font-weight:800;border:0;cursor:pointer;touch-action:manipulation}.app{max-width:1000px;margin:auto;padding:14px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px;border-bottom:1px solid #ffffff24}.brand{font-weight:1000;letter-spacing:2px;font-size:clamp(20px,5vw,32px)}.brand span{color:var(--gold)}.flag{font-size:25px}.coins{background:#18263a;border:1px solid #ffffff22;padding:9px 13px;border-radius:30px;font-weight:800;color:var(--gold)}.hero{padding:25px 8px 12px;text-align:center}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:4px;font-weight:900}.hero h1{margin:8px 0;font-size:clamp(27px,6vw,48px);line-height:1}.hero p{color:var(--muted);margin:10px 0 20px}.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{min-height:118px;text-align:left;padding:18px;border-radius:18px;color:#fff;background:linear-gradient(135deg,#1a2a41,#101827);border:1px solid #ffffff1c;box-shadow:0 10px 25px #0003}.tile:active,.primary:active,.control:active{transform:scale(.98)}.tile .icon{font-size:28px;display:block;margin-bottom:7px}.tile strong{display:block;font-size:17px}.tile small{display:block;color:var(--muted);margin-top:4px;font-weight:500}.tile.start{background:linear-gradient(135deg,#e63946,#9d1528);border-color:#ff9da6}.tile.start small{color:#ffe1e4}.foot{text-align:center;color:#8390a5;font-size:12px;margin:20px 0}.panel{display:none;scroll-margin-top:14px;margin-top:16px;padding:18px;border:1px solid #ffffff22;border-radius:20px;background:#101a2af2}.panel.show{display:block}.panel h2{margin:0 0 14px}.row{display:flex;flex-wrap:wrap;gap:10px}.choice{background:#1d2b40;color:white;padding:12px 14px;border-radius:12px;border:1px solid #ffffff20}.choice.active{border-color:var(--gold);color:var(--gold)}.primary{background:var(--gold);color:#171b23;padding:14px 18px;border-radius:14px;width:100%;margin-top:14px}.back{background:#25334a;color:white;padding:10px 14px;border-radius:12px;margin-bottom:14px}.muted{color:var(--muted);line-height:1.5}.race{display:none;position:fixed;inset:0;z-index:10;background:#070c15;overflow:auto}.race.show{display:flex;flex-direction:column}.racehead{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;gap:8px;background:#101a2a;border-bottom:1px solid #ffffff20}.racehead strong{font-size:15px;letter-spacing:1px}.racehead button{background:#29364b;color:white;border-radius:10px;padding:10px 12px}.trackwrap{position:relative;flex:1;min-height:250px;display:flex;align-items:stretch;justify-content:center;background:linear-gradient(#182d42,#0c1826)}canvas{width:100%;height:100%;min-height:250px;display:block}.hud{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;pointer-events:none}.badge{background:#07101bd9;border:1px solid #ffffff24;border-radius:12px;padding:8px 11px;font-weight:800}.countdown{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#06101a9c;font-size:clamp(70px,20vw,140px);font-weight:1000;color:var(--gold);text-shadow:0 0 25px #ffb000;pointer-events:none}.controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px;background:#101a2a;border-top:1px solid #ffffff20}.control{height:68px;border-radius:17px;color:#fff;background:#26364d;border:1px solid #ffffff2a;font-size:18px}.control.go{background:var(--gold);color:#141a22}.control.brake{background:#b9293b}#cockpitPanel{pointer-events:none}.race-note{text-align:center;font-size:11px;color:#8c9bb0;padding:0 8px 10px;background:#101a2a}.carcard{padding:14px;background:#1b2a40;border-radius:14px;margin:8px 0;border:1px solid #ffffff20}.carcard.selected{border:2px solid var(--gold)}.paint-dot{width:38px;height:38px;border-radius:50%;border:3px solid #ffffff55;margin:5px;display:inline-block}.paint-dot.active{outline:3px solid var(--gold);outline-offset:2px}.paint-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px}.world-options{display:grid;gap:10px;margin:12px 0}.world-race-ui:empty{display:none}.world-race-ui{position:absolute;z-index:4;top:76px;left:10px;right:10px;display:flex;flex-direction:row;align-items:flex-start;gap:6px;pointer-events:none}.world-chip{display:none!important;background:#07101bdc;color:#fff;border:1px solid #ffd44788;border-radius:10px;padding:7px 10px;font-size:12px;font-weight:800;max-width:75%;box-shadow:0 3px 10px #0006}.environment-race-badges{display:none!important}.environment-chip{background:#07101be8;color:#eaf2ff;border:1px solid #ffd447aa;border-radius:9px;padding:5px 8px;font-size:10px;font-weight:900;box-shadow:0 2px 8px #0007}.world-actions{display:flex;gap:7px;pointer-events:auto}.world-action{background:#1c9a62;color:white;border:1px solid #ffffff55;border-radius:10px;padding:9px 11px;font-size:12px;box-shadow:0 3px 10px #0006}#miniMap{position:absolute;right:8px;bottom:8px;width:84px;height:60px;border:1px solid #ffd447;border-radius:8px;background:#08121ddd;z-index:4;pointer-events:none;opacity:.92}#miniMap[hidden]{display:none!important}@media(max-width:420px){.world-race-ui{top:88px}.world-chip{font-size:11px}#miniMap{width:72px;height:52px;right:6px;bottom:6px}}.option-line{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:#1b2a40;border:1px solid #ffffff24;border-radius:13px;color:#fff;font-weight:750}.option-line input{appearance:none;width:54px;height:30px;flex:0 0 54px;border-radius:30px;background:#596579;position:relative;cursor:pointer;transition:background .2s}.option-line input:before{content:"";position:absolute;width:22px;height:22px;left:4px;top:4px;border-radius:50%;background:white;transition:transform .2s}.option-line input:checked{background:#1d9b62}.option-line input:checked:before{transform:translateX(24px)}.option-line input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}@media(min-width:650px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.trackwrap{max-height:68vh}.controls{max-width:650px;width:100%;margin:auto;background:transparent}.race{align-items:center}.racehead,.trackwrap,.race-note{width:100%;max-width:1000px}.controls{max-width:700px}}
+</style></head><body><main class="app" id="home">
+<header class="top"><div class="brand">ARISTIL <span>RACING</span> <span class="flag">🇭🇹</span></div><div class="coins">🪙 <b id="coinCount">250</b></div></header>
+<section class="hero"><div class="eyebrow">🇭🇹 ÉDITION HAÏTI • VITESSE • FIERTÉ</div><h1>PRÊT À PRENDRE<br>LA PISTE ?</h1><p>Les couleurs d’Haïti, la passion de la vitesse !</p></section>
+<section class="menu-grid">
+<button class="tile start" onclick="openRaceSetup()"><span class="icon">🏁</span><strong>JOUER</strong><small>Choisir un circuit et démarrer</small></button>
+<button class="tile" onclick="openPanel('championship')"><span class="icon">🏆</span><strong>CHAMPIONNAT</strong><small>4 courses et classement</small></button><button class="tile" onclick="openPanel('proTournament')"><span class="icon">🥇</span><strong>CHAMPIONNAT PRO</strong><small>Éliminations et grande finale</small></button><button class="tile" onclick="openPanel('career')"><span class="icon">🎖️</span><strong>MODE CARRIÈRE</strong><small>Missions, récompenses et trophées</small></button>
+<button class="tile" onclick="openPanel('multiplayer')"><span class="icon">👥</span><strong>MULTIJOUEUR</strong><small>Duel contre IA ou 2 joueurs sur le même appareil</small></button>
+<button class="tile" onclick="openPanel('garage')"><span class="icon">🚘</span><strong>GARAGE</strong><small>Choisir ta voiture</small></button>
+<button class="tile" onclick="openPanel('upgrade')"><span class="icon">🔧</span><strong>AMÉLIORATIONS</strong><small>Moteur, tenue de route, protection</small></button>
+<button class="tile" onclick="openPanel('circuits')"><span class="icon">🗺️</span><strong>CIRCUITS</strong><small>Découvrir les pistes haïtiennes</small></button>
+<button class="tile" onclick="openPanel('records')"><span class="icon">🏆</span><strong>MES RÉSULTATS</strong><small>Meilleur score et pièces gagnées</small></button>
+<button class="tile" onclick="openPanel('options')"><span class="icon">⚙️</span><strong>OPTIONS</strong><small>Commandes et informations</small></button>
+</section><div class="foot">ÉDITION HAÏTI 🇭🇹 • Version 47.0 • Phares du pilote</div>
+<section class="panel" id="championship"><button class="back" onclick="backHome()">← Menu principal</button><h2>🏆 Championnat d’Haïti</h2><p class="muted">Quatre circuits avec une ligne d’arrivée. Termine chaque course pour marquer des points et devenir champion. Les résultats sont enregistrés sur cet appareil.</p><div class="carcard">Course : <b id="champRound">1 / 4</b><br>Points cumulés : <b id="champPoints">0</b><br>Courses terminées : <b id="champCompleted">0</b> / 4</div><div class="carcard"><b>Barème des points</b><br>🏆 Score 500+ : 25 points<br>🥇 Score 300–499 : 18 points<br>🥈 Score 150–299 : 15 points<br>🏁 Score 1–149 : 10 points</div><div id="champHistory" class="muted">Aucune course terminée.</div><div id="champStatus" class="muted">Prêt à prendre le départ ?</div><button class="primary" id="champButton" onclick="beginChampionship()">COMMENCER LE CHAMPIONNAT</button><button class="choice" onclick="resetChampionship()">Réinitialiser le championnat</button></section>
+<section class="panel" id="proTournament"><button class="back" onclick="backHome()">← Menu principal</button><h2>🥇 Championnat professionnel</h2><p class="muted">Huit pilotes au départ. Les quatre meilleurs passent en demi-finale, puis les deux meilleurs disputent la grande finale. Les résultats sont sauvegardés automatiquement sur cet appareil.</p><div class="carcard">Étape : <b id="proStage">Non commencé</b><br>Pilotes encore en course : <b id="proAlive">8</b><br>Ton statut : <b id="proStatus">Prêt à participer</b></div><div id="proStandings" class="muted"></div><button class="primary" id="proButton" onclick="startProTournament()">LANCER LE CHAMPIONNAT PRO</button><button class="choice" onclick="resetProTournament()">Réinitialiser le tournoi</button></section>
+<section class="panel" id="multiplayer"><button class="back" onclick="backHome()">← Menu principal</button><h2>👥 Mode multijoueur</h2><p class="muted">Choisis ton défi. Le mode 2 joueurs se joue à tour de rôle sur le même appareil. Le mode IA simule un adversaire qui lutte pour la victoire.</p><div class="carcard"><b>🤖 Duel contre l’ordinateur</b><p class="muted">Affronte un pilote IA sur une course de 1 000 mètres.</p><button class="primary" onclick="beginDuel('ai')">DÉFIER L’IA</button></div><div class="carcard"><b>👥 Deux joueurs — même appareil</b><p class="muted">Joueur 1 joue, puis passe l’appareil au joueur 2. Le meilleur score gagne.</p><button class="primary" onclick="beginDuel('local')">COMMENCER À 2 JOUEURS</button></div><div class="carcard"><b>📊 Dernier duel</b><div id="duelHistory" class="muted">Aucun duel terminé.</div></div></section>
+<section class="panel" id="career"><button class="back" onclick="backHome()">← Menu principal</button><h2>🎖️ Mode carrière</h2><p class="muted">Accomplis des missions en course pour gagner des pièces et débloquer des trophées. Ta progression est sauvegardée automatiquement sur cet appareil.</p><div class="carcard">Niveau de pilote : <b id="careerLevel">1</b><br>Expérience : <b id="careerXP">0</b> XP<br>Pièces gagnées en carrière : <b id="careerEarned">0</b></div><div id="careerMissions"></div><h3>🏆 Mes trophées</h3><div id="careerTrophies" class="muted"></div><h3>📜 Historique de carrière</h3><div id="careerHistory" class="muted"></div><button class="choice" onclick="resetCareer()">Réinitialiser la carrière</button></section>
+<section class="panel" id="garage"><button class="back" onclick="backHome()">← Menu principal</button><h2>🚘 Garage</h2><p class="muted">Choisis la voiture que tu veux piloter. Ta voiture sélectionnée sera indiquée dans l'écran de course.</p><div id="carList"></div></section>
+<section class="panel" id="upgrade"><button class="back" onclick="backHome()">← Menu principal</button><h2>🔧 Améliorations</h2><p class="muted">Les améliorations sont une démonstration locale dans ce prototype.</p><div class="carcard">⚡ Moteur — Niveau <b id="eng">1</b><button class="choice" onclick="upgrade('eng')">Améliorer • 50 🪙</button></div><div class="carcard">🛞 Tenue de route — Niveau <b id="hand">1</b><button class="choice" onclick="upgrade('hand')">Améliorer • 50 🪙</button></div><div class="carcard">🛡️ Protection — Niveau <b id="armor">1</b><button class="choice" onclick="upgrade('armor')">Améliorer • 50 🪙</button></div></section>
+<section class="panel" id="circuits"><button class="back" onclick="backHome()">← Menu principal</button><h2>🗺️ Circuits d'Haïti</h2><div class="carcard">🌆 Port-au-Prince — Route urbaine</div><div class="carcard">🏰 Cap-Haïtien — Route historique</div><div class="carcard">🌴 Jacmel — Côte tropicale</div><div class="carcard">⛰️ Montagnes d'Haïti — Route sinueuse</div><button class="primary" onclick="openRaceSetup()">Choisir un circuit</button></section>
+<section class="panel" id="records"><button class="back" onclick="backHome()">← Menu principal</button><h2>🏆 Mes résultats</h2><div class="carcard">Meilleur score : <b id="bestScore">0</b></div><div class="carcard">Courses terminées : <b id="racesDone">0</b></div><p class="muted">Ces résultats sont conservés sur cet appareil.</p></section>
+<section class="panel" id="options"><button class="back" onclick="backHome()">← Menu principal</button><h2>⚙️ Options</h2><p class="muted">Choisis les éléments du monde ouvert et de l’environnement. Chaque option possède son propre interrupteur et tes choix sont mémorisés sur cet appareil.</p><h3>🗺️ Monde ouvert — fonctionnalités</h3><div id="worldOptions" class="world-options">
+<label class="option-line"><span>🛣️ Activer — Exploration des routes</span><input type="checkbox" data-world-option="roads" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🏙️ Activer — Villes et paysages haïtiens</span><input type="checkbox" data-world-option="cities" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>⛽ Activer — Stations-service</span><input type="checkbox" data-world-option="fuel" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🔧 Activer — Garages sur la carte</span><input type="checkbox" data-world-option="garages" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🎯 Activer — Missions d’exploration</span><input type="checkbox" data-world-option="missions" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>📍 Activer — Mini-carte</span><input type="checkbox" data-world-option="minimap" onchange="setWorldOption(this)"></label>
+<h3>🌴 Environnement interactif — commandes indépendantes</h3><div id="environmentOptions" class="world-options">
+<label class="option-line"><span>🚦 Activer — Feux de circulation</span><input type="checkbox" data-world-option="lights" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🚧 Activer — Obstacles et barrières</span><input type="checkbox" data-world-option="barriers" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🌴 Activer — Palmiers et végétation animée</span><input type="checkbox" data-world-option="vegetation" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🏠 Activer — Maisons et bâtiments haïtiens</span><input type="checkbox" data-world-option="buildings" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🌉 Activer — Ponts</span><input type="checkbox" data-world-option="bridges" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🚇 Activer — Tunnels</span><input type="checkbox" data-world-option="tunnels" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🌦️ Activer — Effets météo</span><input type="checkbox" data-world-option="weatherFx" onchange="setWorldOption(this)"></label>
+<label class="option-line"><span>🔉 Activer — Sons de l’environnement</span><input type="checkbox" data-world-option="environmentSound" onchange="setWorldOption(this)"></label>
+</div></div><p id="worldOptionStatus" class="muted" aria-live="polite">Préférences enregistrées sur cet appareil.</p><p class="muted">Les options activées modifient réellement le décor pendant la course : carrefours avec feux et passages piétons, barrières, végétation, maisons, ponts, tunnels, météo et sons. Les éléments du monde ouvert restent indépendants.</p><h3>🎮 Commandes</h3><p class="muted">⬅️ Gauche : déplace ta voiture à gauche<br>🛑 Frein : ralentit<br>Droite ➡️ : déplace ta voiture à droite<br>⏸ Pause : suspend ou reprend la course</p><p class="muted">ARISTIL RACING est un prototype local : le multijoueur en ligne n'est pas activé.</p></section>
+<section class="panel" id="setup"><button class="back" onclick="backHome()">← Menu principal</button><h2>🏁 Préparer la course</h2><p class="muted"><b>🎯 Mode de jeu</b></p><div class="row" id="modeChoices"><button class="choice active" onclick="selectMode(this,'main')">♾️ Course principale — sans limite</button><button class="choice" onclick="selectMode(this,'championship')">🏆 Championnat — ligne d’arrivée</button></div><p class="muted">Circuit</p><div class="row" id="trackChoices"><button class="choice active" onclick="selectTrack(this,'Port-au-Prince')">🌆 Port-au-Prince</button><button class="choice" onclick="selectTrack(this,'Cap-Haïtien')">🏰 Cap-Haïtien</button><button class="choice" onclick="selectTrack(this,'Jacmel')">🌴 Jacmel</button><button class="choice" onclick="selectTrack(this,'Montagnes d’Haïti')">⛰️ Montagnes</button></div><p class="muted">Ta voiture : <b id="chosenCar">Édition Haïti</b></p><p class="muted"><b>🌦️ Conditions météo</b></p><div class="row" id="weatherChoices"><button class="choice active" onclick="selectWeather(this,'sun')">☀️ Soleil</button><button class="choice" onclick="selectWeather(this,'rain')">🌧️ Pluie</button><button class="choice" onclick="selectWeather(this,'fog')">🌫️ Brouillard</button></div><p class="muted"><b>🎮 Choisis la difficulté</b></p><div class="row" id="difficultyChoices"><button class="choice" onclick="selectDifficulty(this,'easy')">🟢 Facile<br><small>Peu d’obstacles et trafic léger</small></button><button class="choice active" onclick="selectDifficulty(this,'medium')">🟡 Moyen<br><small>Course équilibrée</small></button><button class="choice" onclick="selectDifficulty(this,'hard')">🔴 Difficile<br><small>Trafic dense et plus de défis</small></button></div><button class="primary" onclick="startRace()">DÉMARRER LA COURSE</button></section>
+</main>
+<section class="race" id="race"><header class="racehead"><strong>🇭🇹 ARISTIL RACING 47.0 • PHARES DU PILOTE</strong><button onclick="toggleSound()" id="soundTop">🔊 ACTIVER LE SON</button><button onclick="toggleCockpit()" id="cockpitTop">🎥 COCKPIT</button><button onclick="togglePause()" id="pauseTop">⏸ PAUSE</button><button onclick="exitRace()">✕ QUITTER</button></header><div class="trackwrap"><canvas id="game"></canvas><div class="hud"><div class="badge" id="raceTrack">🌆 Port-au-Prince</div><div class="badge" style="min-width:105px;text-align:center">🏎️ <span id="speedText">0</span> <small>km/h</small><div style="height:5px;background:#344256;border-radius:5px;margin-top:5px;overflow:hidden"><div id="speedBar" style="width:0%;height:100%;background:#ffd447"></div></div></div><div class="badge">SCORE <span id="score">0</span><br><small>🏁 <span id="distanceText">1000</span> m</small></div><div class="badge">🚗 ÉTAT <span id="damageText">100%</span><div style="width:78px;height:6px;background:#5a2430;border-radius:6px;margin-top:5px;overflow:hidden"><div id="damageBar" style="height:100%;width:100%;background:#48db80"></div></div></div></div><div id="worldRaceUI" class="world-race-ui" aria-live="polite"><div id="worldRouteBadge" class="world-chip" hidden></div><div id="worldCityBadge" class="world-chip" hidden></div><div id="worldMissionBadge" class="world-chip" hidden></div><div id="environmentRaceBadges" class="environment-race-badges" aria-live="polite"></div><div class="world-actions"><button id="fuelStopBtn" class="world-action" onclick="useWorldStop('fuel')" hidden>⛽ STATION</button><button id="garageStopBtn" class="world-action" onclick="useWorldStop('garage')" hidden>🔧 GARAGE</button></div><canvas id="miniMap" width="150" height="110" hidden></canvas></div><div id="cockpitPanel" style="display:none;position:absolute;z-index:3;left:8%;right:8%;bottom:8px;background:linear-gradient(#172536ee,#050a12f5);border:2px solid #91a6b8;border-radius:22px 22px 10px 10px;padding:10px;text-align:center;box-shadow:0 0 20px #0009"><div style="font-size:11px;color:#b8c9d9;letter-spacing:2px">VUE COCKPIT • TABLEAU DE BORD</div><div style="display:flex;justify-content:space-around;gap:8px;align-items:center;margin-top:6px"><div>⚡<b id="rpmText">900</b><small> tr/min</small></div><div>⛽<b id="fuelText">100</b><small>%</small></div><div>🌡️<b id="tempText">90</b><small>°C</small></div><div>🛞<b id="cockpitSpeed">0</b><small> km/h</small></div></div><div style="font-size:28px;margin-top:2px">◉</div></div><div class="countdown" id="countdown">3</div><div id="finishOverlay" style="display:none;position:absolute;inset:0;z-index:5;background:#06101aeF;align-items:center;justify-content:center;text-align:center;padding:24px"><div style="max-width:420px;width:100%;background:#101a2a;border:2px solid #ffd447;border-radius:22px;padding:24px"><div style="font-size:52px">🏁🏆</div><h2 style="color:#ffd447;margin:8px 0">ARRIVÉE !</h2><p id="finishScore" style="font-size:20px;font-weight:900"></p><p id="finishRank" style="color:#cbd5e1"></p><button class="primary" id="duelNextBtn" style="display:none" onclick="nextDuelPlayer()">PASSER AU JOUEUR 2</button><button class="primary" id="duelExitBtn" onclick="exitRace()">VOIR MES RÉSULTATS</button></div></div></div><div class="controls"><button class="control" id="left">⬅️<br>GAUCHE</button><button class="control brake" id="brake">🛑<br>FREIN</button><button class="control go" id="right">DROITE<br>➡️</button></div><div class="controls" style="grid-template-columns:1fr 1fr;padding-top:0"><button class="control go" id="accelerate">⚡ ACCÉLÉRER</button><button class="control" id="turboBtn">🚀 TURBO</button></div><div class="race-note">ÉDITION HAÏTI 🇭🇹 • Compteur de vitesse en km/h, accélération, freinage et turbo. Course principale : roule sans limite jusqu’à la panne totale après les collisions. Championnat : franchis la ligne d’arrivée des quatre circuits pour gagner des points. Vue cockpit et tableau de bord disponibles !</div></section>
+<script>
+// Sons synthétiques créés dans le navigateur : aucun fichier audio externe nécessaire.
+let audioCtx=null, soundOn=false, engineOsc=null, engineOsc2=null, engineGain=null, engineGain2=null, engineFilter=null;
+function ensureAudio(){if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC()}if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}
+function tone(freq=440,duration=.12,type='sine',volume=.08,slide=0){if(!soundOn)return;const a=ensureAudio();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(freq,a.currentTime);if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(30,freq+slide),a.currentTime+duration);g.gain.setValueAtTime(.0001,a.currentTime);g.gain.exponentialRampToValueAtTime(Math.max(.0002,volume),a.currentTime+.015);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+duration);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+duration+.03)}
+function startEngine(){if(!soundOn)return;const a=ensureAudio();if(!a||engineOsc)return;engineOsc=a.createOscillator();engineOsc2=a.createOscillator();engineFilter=a.createBiquadFilter();engineGain=a.createGain();engineGain2=a.createGain();engineOsc.type='sawtooth';engineOsc.frequency.value=92;engineOsc2.type='triangle';engineOsc2.frequency.value=46;engineFilter.type='lowpass';engineFilter.frequency.value=1250;engineGain.gain.value=paused?0:.30;engineGain2.gain.value=paused?0:.11;engineOsc.connect(engineFilter);engineFilter.connect(engineGain);engineGain.connect(a.destination);engineOsc2.connect(engineGain2);engineGain2.connect(a.destination);engineOsc.start();engineOsc2.start()}
+function stopEngine(){if(engineOsc){try{engineOsc.stop();engineOsc2.stop()}catch(e){}try{engineOsc.disconnect();engineOsc2.disconnect();engineFilter.disconnect();engineGain.disconnect();engineGain2.disconnect()}catch(e){}engineOsc=null;engineOsc2=null;engineFilter=null;engineGain=null;engineGain2=null}}
+function setEngineActive(active){if(engineGain&&audioCtx){const v=active&&soundOn?.30:0;engineGain.gain.setTargetAtTime(v,audioCtx.currentTime,.08);engineGain2.gain.setTargetAtTime(active&&soundOn?.11:0,audioCtx.currentTime,.08)}}
+async function toggleSound(){if(!soundOn){soundOn=true;document.getElementById('soundTop').textContent='🔇 COUPER LE SON';const a=ensureAudio();if(a){try{await a.resume()}catch(e){}tone(880,.22,'sine',.09);setTimeout(()=>{if(soundOn)tone(660,.22,'sine',.09)},250);if(running&&!paused)startEngine()}}else{soundOn=false;document.getElementById('soundTop').textContent='🔊 ACTIVER LE SON';setEngineActive(false);stopEngine()}}
+let career=JSON.parse(localStorage.arCareer||'null')||{xp:0,earned:0,completed:[],history:[],trophies:[]};
+const careerGoals=[{id:'first',title:'Premier départ',desc:'Terminer une course',target:1,reward:40},{id:'score300',title:'Pilote confirmé',desc:'Atteindre un score de 300 points sur une course',target:300,reward:60},{id:'five',title:'Habitué des circuits',desc:'Terminer 5 courses',target:5,reward:100},{id:'score700',title:'As du volant',desc:'Atteindre un score de 700 points sur une course',target:700,reward:150},{id:'champion',title:'Champion en devenir',desc:'Accumuler 50 points au championnat',target:50,reward:200}];
+function saveCareer(){localStorage.arCareer=JSON.stringify(career)}
+function refreshCareer(){const level=1+Math.floor(career.xp/250);document.getElementById('careerLevel').textContent=level;document.getElementById('careerXP').textContent=career.xp;document.getElementById('careerEarned').textContent=career.earned;document.getElementById('careerMissions').innerHTML=careerGoals.map(g=>{let val=career.completed.includes(g.id)?g.target:(g.id==='first'?career.history.length:g.id==='score300'?Math.max(0,...career.history.map(x=>x.score)):g.id==='five'?career.history.length:g.id==='score700'?Math.max(0,...career.history.map(x=>x.score)):champPoints);return `<div class="carcard"><b>${career.completed.includes(g.id)?'✅':'🎯'} ${g.title}</b><br><span class="muted">${g.desc}</span><br>Progression : ${Math.min(val,g.target)} / ${g.target}<br>Récompense : ${g.reward} 🪙 ${career.completed.includes(g.id)?'• Réclamée':'• Automatique'}</div>`}).join('');document.getElementById('careerTrophies').innerHTML=career.trophies.length?career.trophies.map(t=>'🏆 '+t).join('<br>'):'Aucun trophée pour le moment.';document.getElementById('careerHistory').innerHTML=career.history.length?career.history.slice(-8).reverse().map(h=>`${h.date} — ${h.track} : ${h.score} pts ${h.won?'🏁 Terminée':'❌ Perdue'}`).join('<br>'):'Aucune course enregistrée.'}
+function updateCareer(scoreValue,won){career.history.push({score:scoreValue,track:track,date:new Date().toLocaleDateString(),won:won});career.history=career.history.slice(-50);career.xp+=Math.max(5,Math.floor(scoreValue/10));let added=0;for(const g of careerGoals){if(career.completed.includes(g.id))continue;let ok=g.id==='first'?career.history.some(h=>h.won):g.id==='score300'?career.history.some(h=>h.score>=300):g.id==='five'?career.history.filter(h=>h.won).length>=5:g.id==='score700'?career.history.some(h=>h.score>=700):champPoints>=50;if(ok){career.completed.push(g.id);career.trophies.push(g.title);added+=g.reward;}}if(added){coins+=added;career.earned+=added;}saveCareer();}
+function resetCareer(){if(!confirm('Réinitialiser toute ta progression de carrière ?'))return;career={xp:0,earned:0,completed:[],history:[],trophies:[]};saveCareer();refreshCareer()}
+let multiplayerMode='';let duelPlayer=1;let duelScores=[];let tournamentMode=false;let proTournament=JSON.parse(localStorage.arProTournament||'null')||{stage:0,alive:['Toi','Dany Turbo','Mika Racing','Junior Flash','Nadia Speed','Rico Nitro','Sonia Drift','Max Vitesse'],history:[],status:'ready',lastRank:null};
+const championshipTracks=['Port-au-Prince','Cap-Haïtien','Jacmel','Montagnes d’Haïti'];let championshipResults=JSON.parse(localStorage.arChampResults||'[]');let championshipMode=false,gameMode='main',cockpitView=false,fuel=100,engineTemp=90,finishReason='finish',champRound=+(localStorage.arChampRound||0),champPoints=+(localStorage.arChampPoints||0);let difficulty='medium',weather='sun';const difficultySettings={easy:{obstacle:230,coin:180,traffic:112,rival:250,maxTraffic:3,maxRivals:2},medium:{obstacle:170,coin:155,traffic:82,rival:190,maxTraffic:5,maxRivals:3},hard:{obstacle:125,coin:135,traffic:58,rival:145,maxTraffic:7,maxRivals:4}};
+const cars=[{name:'Sport',emoji:'🏎️',color:'#e63946',cost:0},{name:'Rallye',emoji:'🚙',color:'#43a6ff',cost:100},{name:'Turbo',emoji:'🏎️',color:'#a66cff',cost:180},{name:'Supercar',emoji:'🚗',color:'#f4f4f4',cost:300},{name:'Édition Haïti',emoji:'🇭🇹',color:'#2457e6',cost:0}];let coins=+(localStorage.arCoins||250),owned=JSON.parse(localStorage.arOwned||'[0,4]'),selected=+(localStorage.arSelected||4),track='Port-au-Prince',eng=1,hand=1,armor=1,score=0,best=+(localStorage.arBest||0),races=+(localStorage.arRaces||0),running=false,paused=false,started=false,x=0,lane=0,frame=0,timer=null,raf=null;
+let damage=100,speed=1,accelerating=false,turboFrames=0,shakeFrames=0,obstacles=[],pickups=[],collisionCooldown=0,obstacleId=0;
+let rivals=[],rivalId=0,traffic=[],trafficId=0;let distanceLeft=1000,finishShown=false;let localRaceScores=JSON.parse(localStorage.arRaceScores||'[]');
+function save(){localStorage.arChampRound=champRound;localStorage.arChampPoints=champPoints;localStorage.arChampResults=JSON.stringify(championshipResults);localStorage.arCoins=coins;localStorage.arOwned=JSON.stringify(owned);localStorage.arSelected=selected;localStorage.arBest=best;localStorage.arRaces=races;document.getElementById('coinCount').textContent=coins;document.getElementById('bestScore').textContent=best;document.getElementById('racesDone').textContent=races;document.getElementById('chosenCar').textContent=cars[selected].name}
+function scrollToOpenedPanel(panel){if(!panel)return;requestAnimationFrame(()=>{panel.scrollIntoView({behavior:'smooth',block:'start'});});}
+// Défile automatiquement vers chaque menu qui devient visible, y compris les menus ouverts depuis une course.
+const panelAutoScrollObserver=new MutationObserver(changes=>{for(const change of changes){const panel=change.target;if(panel.classList.contains('panel')&&panel.classList.contains('show'))scrollToOpenedPanel(panel);}});
+document.querySelectorAll('.panel').forEach(panel=>panelAutoScrollObserver.observe(panel,{attributes:true,attributeFilter:['class']}));
+function hidePanels(){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'))}function backHome(){hidePanels();window.scrollTo({top:0,behavior:'smooth'})}
+const worldOptionDefaults={roads:false,cities:false,fuel:false,garages:false,missions:false,minimap:false,lights:false,barriers:false,vegetation:false,buildings:false,bridges:false,tunnels:false,weatherFx:false,environmentSound:false};
+function readWorldOptions(){try{return {...worldOptionDefaults,...JSON.parse(localStorage.getItem('arWorldOptions')||'{}')}}catch(e){return {...worldOptionDefaults}}}
+function setWorldOption(input){const prefs=readWorldOptions();prefs[input.dataset.worldOption]=input.checked;localStorage.setItem('arWorldOptions',JSON.stringify(prefs));const active=Object.values(prefs).filter(Boolean).length;document.getElementById('worldOptionStatus').textContent=active+' fonctionnalité(s) sélectionnée(s). Tes choix sont sauvegardés.';if(running)updateWorldRaceUI();}
+function loadWorldOptions(){const prefs=readWorldOptions();document.querySelectorAll('[data-world-option]').forEach(input=>{input.checked=!!prefs[input.dataset.worldOption]});const active=Object.values(prefs).filter(Boolean).length;const status=document.getElementById('worldOptionStatus');if(status)status.textContent=active+' fonctionnalité(s) activée(s) dans tes préférences.';updateWorldRaceUI();}
+let worldStopUsed={fuel:false,garage:false};
+function updateWorldRaceUI(){const p=readWorldOptions(),show=(id,on)=>{const e=document.getElementById(id);if(e)e.hidden=!on};show('worldRouteBadge',false);show('worldCityBadge',false);show('worldMissionBadge',false);show('fuelStopBtn',p.fuel&&!worldStopUsed.fuel);show('garageStopBtn',p.garages&&!worldStopUsed.garage);show('miniMap',p.minimap);const envBox=document.getElementById('environmentRaceBadges');if(envBox)envBox.innerHTML='';const worldUI=document.getElementById('worldRaceUI');if(worldUI){const showActions=(p.fuel&&!worldStopUsed.fuel)||(p.garages&&!worldStopUsed.garage);worldUI.style.display=(showActions||p.minimap)?'flex':'none';}drawMiniMap();}
+function drawMiniMap(){const c=document.getElementById('miniMap');if(!c||c.hidden)return;const g=c.getContext('2d');g.clearRect(0,0,c.width,c.height);g.fillStyle='#10251e';g.fillRect(0,0,c.width,c.height);g.strokeStyle='#d9d1a7';g.lineWidth=13;g.lineCap='round';g.beginPath();g.moveTo(16,94);g.bezierCurveTo(120,85,25,55,130,12);g.stroke();g.strokeStyle='#fff';g.lineWidth=2;g.setLineDash([5,5]);g.beginPath();g.moveTo(16,94);g.bezierCurveTo(120,85,25,55,130,12);g.stroke();g.setLineDash([]);g.fillStyle='#ffd447';g.beginPath();g.arc(16+(frame%900)/900*112,94-(frame%900)/900*78,5,0,Math.PI*2);g.fill();g.fillStyle='#fff';g.font='9px system-ui';g.fillText('CARTE',6,10);}
+function useWorldStop(kind){if(!running||paused)return;if(kind==='fuel'&&!worldStopUsed.fuel){fuel=100;worldStopUsed.fuel=true;tone(720,.18,'sine',.07);document.getElementById('fuelText').textContent='100';}else if(kind==='garage'&&!worldStopUsed.garage){damage=100;worldStopUsed.garage=true;updateDamage();tone(620,.18,'sine',.07);}updateWorldRaceUI();}
+
+function openPanel(id){hidePanels();const panel=document.getElementById(id);panel.classList.add('show');if(id==='garage')renderCars();if(id==='career')refreshCareer();save();scrollToOpenedPanel(panel)}
+const paintColors=['#e63946','#2457e6','#ffd447','#f4f4f4','#20c997','#a66cff','#ff7a18','#111827'];
+let customPaint=JSON.parse(localStorage.arCustomPaint||'{}');
+function carColor(i){return customPaint[i]||cars[i].color}
+function renderCars(){document.getElementById('carList').innerHTML=cars.map((c,i)=>`<div class="carcard ${i===selected?'selected':''}"><b style="font-size:18px">${c.emoji} ${c.name}</b><p class="muted">${owned.includes(i)?(i===selected?'✅ Sélectionnée':'Disponible'):'🔒 Prix : '+c.cost+' pièces'}</p><button class="choice" onclick="pickCar(${i})">${owned.includes(i)?'Choisir':'Débloquer'}</button>${owned.includes(i)?`<div class="muted">🎨 Peinture ${i===selected?'de ta voiture':'(sélectionne d’abord cette voiture)'}</div><div class="paint-row">${paintColors.map(col=>`<button class="paint-dot ${carColor(i)===col?'active':''}" style="background:${col}" aria-label="Peinture ${col}" onclick="setPaint(${i},'${col}')"></button>`).join('')}</div>`:''}</div>`).join('')}
+function setPaint(i,color){if(!owned.includes(i)){alert('Débloque d’abord cette voiture.');return}customPaint[i]=color;localStorage.arCustomPaint=JSON.stringify(customPaint);renderCars();save()}
+function pickCar(i){if(!owned.includes(i)){if(coins<cars[i].cost){alert('Tu n’as pas assez de pièces. Termine une course pour en gagner.');return}coins-=cars[i].cost;owned.push(i)}selected=i;save();renderCars()}
+function upgrade(k){if(coins<50){alert('Pas assez de pièces : termine une course pour en gagner.');return}coins-=50;window[k]++;document.getElementById(k).textContent=window[k];save()}
+function selectMode(el,m){gameMode=m;championshipMode=m==='championship';document.querySelectorAll('#modeChoices .choice').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function toggleCockpit(){cockpitView=!cockpitView;const p=document.getElementById('cockpitPanel');p.style.display=cockpitView?'block':'none';document.getElementById('cockpitTop').textContent=cockpitView?'🛣️ VUE ROUTE':'🎥 COCKPIT';draw()}
+function selectTrack(el,t){track=t;document.querySelectorAll('#trackChoices .choice').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function selectWeather(el,v){weather=v;document.querySelectorAll('#weatherChoices .choice').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function selectDifficulty(el,d){difficulty=d;document.querySelectorAll('#difficultyChoices .choice').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function openRaceSetup(){multiplayerMode='';championshipMode=false;hidePanels();document.getElementById('setup').classList.add('show');save()}
+function beginDuel(kind){multiplayerMode=kind;duelPlayer=1;duelScores=[];gameMode='duel';championshipMode=true;track='Port-au-Prince';hidePanels();document.getElementById('setup').classList.add('show');document.querySelectorAll('#modeChoices .choice').forEach(b=>b.classList.remove('active'));document.getElementById('chosenCar').textContent=cars[selected].name;document.getElementById('raceTrack').textContent='Duel multijoueur';}
+function pointsForScore(value){return value>=500?25:value>=300?18:value>=150?15:10}
+function refreshChampionship(){
+ document.getElementById('champRound').textContent=champRound>=4?'Terminé':(champRound+1)+' / 4';
+ document.getElementById('champPoints').textContent=champPoints;
+ document.getElementById('champCompleted').textContent=champRound;
+ document.getElementById('champStatus').textContent=champRound>=4?'🏆 Championnat terminé ! Total : '+champPoints+' points.':(champRound?'Course précédente validée. Prépare-toi pour la suivante !':'Quatre circuits t’attendent. Termine chaque course pour marquer des points.');
+ document.getElementById('champButton').textContent=champRound>=4?'RECOMMENCER LE CHAMPIONNAT':(champRound?'COURSE SUIVANTE':'COMMENCER LE CHAMPIONNAT');
+ const h=document.getElementById('champHistory');h.innerHTML=championshipResults.length?championshipResults.map((r,i)=>'<div class="carcard">Course '+(i+1)+' — '+r.track+'<br>Score : '+r.score+' • <b>+'+r.points+' points</b></div>').join(''):'Aucune course terminée.';
+}
+function beginChampionship(){gameMode='championship';championshipMode=true;document.querySelectorAll('#modeChoices .choice').forEach((b,i)=>b.classList.toggle('active',i===1));if(champRound>=4){champRound=0;champPoints=0;championshipResults=[];save()}track=championshipTracks[champRound];hidePanels();document.getElementById('setup').classList.add('show');document.querySelectorAll('#trackChoices .choice').forEach(b=>b.classList.remove('active'));const choices=[...document.querySelectorAll('#trackChoices .choice')];if(choices[champRound])choices[champRound].classList.add('active');document.getElementById('chosenCar').textContent=cars[selected].name;document.getElementById('champStatus').textContent='Prochaine course : '+track;save()}
+function resetChampionship(){champRound=0;champPoints=0;championshipResults=[];championshipMode=false;save();refreshChampionship()}
+
+
+function savePro(){localStorage.arProTournament=JSON.stringify(proTournament);refreshProTournament()}
+function refreshProTournament(){const names=['Quart de finale','Demi-finale','Grande finale','Terminé'];document.getElementById('proStage').textContent=names[proTournament.stage]||'Non commencé';document.getElementById('proAlive').textContent=proTournament.alive.length;document.getElementById('proStatus').textContent=proTournament.status==='champion'?'🏆 CHAMPION !':proTournament.status==='out'?'Éliminé du tournoi':proTournament.status==='ready'?'Prêt à participer':proTournament.status==='done'?'Tournoi terminé':'En compétition';document.getElementById('proStandings').innerHTML=proTournament.history.map((h,i)=>'<div class="carcard"><b>'+h.stage+'</b><br>'+h.rows.map((r,j)=>(j+1)+'. '+r.name+' — '+r.score+' pts'+(r.name==='Toi'?' ⭐':'')).join('<br>')+'</div>').join('')||'<p class="muted">Aucun résultat pour le moment.</p>';const b=document.getElementById('proButton');b.textContent=proTournament.status==='champion'||proTournament.status==='out'||proTournament.status==='done'?'RECOMMENCER LE TOURNOI':proTournament.status==='ready'?'LANCER LE CHAMPIONNAT PRO':'JOUER LA PROCHAINE MANCHE';b.disabled=proTournament.status==='done'}
+function startProTournament(){if(['ready','out','champion','done'].includes(proTournament.status)){proTournament={stage:0,alive:['Toi','Dany Turbo','Mika Racing','Junior Flash','Nadia Speed','Rico Nitro','Sonia Drift','Max Vitesse'],history:[],status:'active',lastRank:null};}if(proTournament.status!=='active')return;const tracks=['Port-au-Prince','Cap-Haïtien','Jacmel'];track=tracks[Math.min(proTournament.stage,2)];tournamentMode=true;championshipMode=true;gameMode='championship';hidePanels();document.getElementById('setup').classList.add('show');document.querySelectorAll('#modeChoices .choice').forEach((b,i)=>b.classList.toggle('active',i===1));document.querySelectorAll('#trackChoices .choice').forEach(b=>b.classList.toggle('active',b.textContent.includes(track)));document.getElementById('chosenCar').textContent=cars[selected].name;savePro()}
+function resolveProTournament(){const others=proTournament.alive.filter(n=>n!=='Toi');let rows=[{name:'Toi',score:finishReason==='lost'?0:score}];others.forEach((name,i)=>rows.push({name,score:finishReason==='lost'?Math.floor(150+Math.random()*650):Math.floor(score*(.65+Math.random()*.7))}));rows.sort((a,b)=>b.score-a.score);const rank=rows.findIndex(r=>r.name==='Toi')+1;const stageName=['Quart de finale','Demi-finale','Grande finale'][proTournament.stage];proTournament.history.push({stage:stageName,rows:rows});proTournament.lastRank=rank;let qualified=Math.ceil(rows.length/2);if(proTournament.stage===2){proTournament.status=rank===1?'champion':'done';proTournament.alive=rank===1?['Toi']:[rows[0].name];}else if(rank<=qualified){proTournament.alive=rows.slice(0,qualified).map(r=>r.name);proTournament.stage++;proTournament.status='active';}else{proTournament.status='out';proTournament.alive=rows.slice(0,qualified).map(r=>r.name);}savePro();return rank===1&&proTournament.stage===3?'🏆 TU ES LE CHAMPION !':proTournament.status==='out'?'❌ Tu es éliminé (rang '+rank+').':proTournament.status==='done'?'🥇 Champion : '+rows[0].name:'✅ Qualifié ! Rang '+rank+'. Prochaine étape : '+['','Demi-finale','Grande finale'][proTournament.stage];}
+function resetProTournament(){proTournament={stage:0,alive:['Toi','Dany Turbo','Mika Racing','Junior Flash','Nadia Speed','Rico Nitro','Sonia Drift','Max Vitesse'],history:[],status:'ready',lastRank:null};savePro()}
+
+
+function startRace(){worldStopUsed={fuel:false,garage:false};championshipMode=gameMode==='championship'||gameMode==='duel';if(!tournamentMode&&gameMode!=='duel')championshipMode=gameMode==='championship';if(championshipMode&&gameMode==='championship')track=championshipTracks[Math.min(champRound,3)];ensureAudio();stopEngine();document.getElementById('home').style.display='none';document.getElementById('race').classList.add('show');document.getElementById('raceTrack').textContent=(gameMode==='duel'?(multiplayerMode==='local'?'👤 JOUEUR '+duelPlayer:'🤖 DUEL IA')+' • ':'')+track+' • '+({sun:'☀️ SOLEIL',rain:'🌧️ PLUIE',fog:'🌫️ BROUILLARD'}[weather])+' • '+({easy:'FACILE',medium:'MOYEN',hard:'DIFFICILE'}[difficulty]);document.getElementById('countdown').style.display='flex';document.getElementById('countdown').textContent='3';score=0;frame=0;lane=1;fuel=100;engineTemp=90;cockpitView=false;document.getElementById('cockpitPanel').style.display='none';document.getElementById('cockpitTop').textContent='🎥 COCKPIT';paused=false;started=false;running=true;damage=100;speed=1;accelerating=false;turboFrames=0;shakeFrames=0;obstacles=[];pickups=[];rivals=[];rivalId=0;traffic=[];trafficId=0;collisionCooldown=0;distanceLeft=1000;finishShown=false;finishReason='finish';document.getElementById('finishOverlay').style.display='none';updateWorldRaceUI();document.getElementById('distanceText').textContent=championshipMode?'1000':'∞';document.getElementById('speedText').textContent='0';document.getElementById('speedBar').style.width='0%';updateDamage();resize();let n=3;tone(520,.12,'sine',.07);clearInterval(timer);timer=setInterval(()=>{n--;document.getElementById('countdown').textContent=n>0?n:'GO!';if(n>0)tone(520,.12,'sine',.07);else if(n===0){tone(880,.3,'square',.055);startEngine()}if(n<0){clearInterval(timer);document.getElementById('countdown').style.display='none';started=true;loop()}},700)}
+function resize(){const c=document.getElementById('game'),r=c.getBoundingClientRect();c.width=Math.max(300,r.width*devicePixelRatio);c.height=Math.max(250,r.height*devicePixelRatio);x=c.width/2}
+function drawSupercar(g,cx,cy,cw,ch,color,player=false){
+  g.save();
+  // Ombre et pneus larges : silhouette de voiture GT vue de dessus
+  g.fillStyle='#0008';g.beginPath();g.ellipse(cx,cy+ch*.52,cw*.59,ch*.52,0,0,Math.PI*2);g.fill();
+  g.fillStyle='#080b10';
+  [[-.49,.18],[.34,.18],[-.49,.67],[.34,.67]].forEach(([x,y])=>{g.beginPath();g.roundRect(cx+cw*x,cy+ch*y,cw*.17,ch*.20,Math.max(3,cw*.035));g.fill();g.fillStyle='#737d89';g.fillRect(cx+cw*(x+.045),cy+ch*(y+.045),cw*.08,ch*.11);g.fillStyle='#080b10'});
+  // Carrosserie GT plus carrée et large
+  g.fillStyle=color;g.beginPath();g.moveTo(cx-cw*.22,cy+ch*.02);g.quadraticCurveTo(cx,cy-ch*.04,cx+cw*.22,cy+ch*.02);g.lineTo(cx+cw*.40,cy+ch*.14);g.lineTo(cx+cw*.47,cy+ch*.34);g.lineTo(cx+cw*.46,cy+ch*.76);g.lineTo(cx+cw*.34,cy+ch*.96);g.lineTo(cx-cw*.34,cy+ch*.96);g.lineTo(cx-cw*.46,cy+ch*.76);g.lineTo(cx-cw*.47,cy+ch*.34);g.lineTo(cx-cw*.40,cy+ch*.14);g.closePath();g.fill();
+  // Reflets de carrosserie et capot
+  g.fillStyle='#ffffff36';g.beginPath();g.moveTo(cx-cw*.29,cy+ch*.12);g.lineTo(cx,cy+ch*.06);g.lineTo(cx+cw*.29,cy+ch*.12);g.lineTo(cx+cw*.34,cy+ch*.31);g.lineTo(cx,cy+ch*.38);g.lineTo(cx-cw*.34,cy+ch*.31);g.closePath();g.fill();
+  // Pare-brise et toit de voiture de compétition
+  g.fillStyle='#101c2b';g.beginPath();g.moveTo(cx-cw*.30,cy+ch*.31);g.lineTo(cx-cw*.22,cy+ch*.20);g.lineTo(cx+cw*.22,cy+ch*.20);g.lineTo(cx+cw*.30,cy+ch*.31);g.lineTo(cx+cw*.25,cy+ch*.55);g.lineTo(cx-cw*.25,cy+ch*.55);g.closePath();g.fill();
+  g.strokeStyle='#a9d8ed';g.lineWidth=Math.max(1,cw*.025);g.beginPath();g.moveTo(cx-cw*.23,cy+ch*.33);g.lineTo(cx+cw*.23,cy+ch*.33);g.stroke();
+  // Bandes de course, phares avant et feux arrière
+  g.fillStyle='#ffffffbb';g.fillRect(cx-cw*.045,cy+ch*.07,cw*.09,ch*.44);
+  // Petit motif bleu et rouge inspiré du drapeau haïtien sur le capot
+  if(player){g.fillStyle='#1746a2';g.fillRect(cx-cw*.19,cy+ch*.39,cw*.38,ch*.075);g.fillStyle='#e63946';g.fillRect(cx-cw*.19,cy+ch*.465,cw*.38,ch*.075);g.strokeStyle='#ffffff';g.lineWidth=Math.max(1,cw*.012);g.strokeRect(cx-cw*.19,cy+ch*.39,cw*.38,ch*.15);}
+  g.fillStyle='#fff7bf';g.fillRect(cx-cw*.37,cy+ch*.12,cw*.17,ch*.045);g.fillRect(cx+cw*.20,cy+ch*.12,cw*.17,ch*.045);
+  g.fillStyle='#ff3049';g.fillRect(cx-cw*.34,cy+ch*.86,cw*.20,ch*.055);g.fillRect(cx+cw*.14,cy+ch*.86,cw*.20,ch*.055);
+  // Aileron et diffuseur arrière
+  g.fillStyle='#111820';g.fillRect(cx-cw*.42,cy+ch*.93,cw*.84,ch*.045);g.fillRect(cx-cw*.31,cy+ch*.97,cw*.62,ch*.025);
+  // Lignes néon futuristes sur les flancs et le capot
+  const neon = player ? '#ffd447' : color;
+  g.save();g.strokeStyle=neon;g.lineWidth=Math.max(2,cw*.035);g.shadowColor=neon;g.shadowBlur=12;
+  g.beginPath();g.moveTo(cx-cw*.39,cy+ch*.39);g.lineTo(cx-cw*.34,cy+ch*.72);g.lineTo(cx-cw*.25,cy+ch*.82);g.moveTo(cx+cw*.39,cy+ch*.39);g.lineTo(cx+cw*.34,cy+ch*.72);g.lineTo(cx+cw*.25,cy+ch*.82);g.moveTo(cx-cw*.13,cy+ch*.61);g.lineTo(cx-cw*.17,cy+ch*.77);g.moveTo(cx+cw*.13,cy+ch*.61);g.lineTo(cx+cw*.17,cy+ch*.77);g.stroke();g.shadowBlur=0;g.restore();
+  // Sous-éclairage néon
+  g.save();g.globalAlpha=player?.32:.18;g.fillStyle=neon;g.shadowColor=neon;g.shadowBlur=18;g.beginPath();g.ellipse(cx,cy+ch*.61,cw*.48,ch*.18,0,0,Math.PI*2);g.fill();g.restore();
+  if(player){
+    g.strokeStyle='#ffd447';g.lineWidth=Math.max(4,cw*.075);g.shadowColor='#ffd447';g.shadowBlur=22;g.strokeRect(cx-cw*.65,cy-ch*.08,cw*1.30,ch*1.18);g.shadowBlur=0;
+    g.fillStyle='#ffd447';g.beginPath();g.moveTo(cx,cy-ch*.13);g.lineTo(cx-cw*.17,cy-ch*.27);g.lineTo(cx+cw*.17,cy-ch*.27);g.closePath();g.fill();
+    g.fillStyle='#07101b';g.fillRect(cx-cw*.63,cy-ch*.43,cw*1.26,ch*.19);g.strokeStyle='#ffd447';g.lineWidth=1.5;g.strokeRect(cx-cw*.63,cy-ch*.43,cw*1.26,ch*.19);
+    g.fillStyle='#ffd447';g.font=`900 ${Math.max(12,cw*.22)}px system-ui`;g.textAlign='center';g.textBaseline='middle';g.fillText('TA VOITURE 🇭🇹',cx,cy-ch*.335);
+  }
+  g.restore();
+}
+function draw(){const c=document.getElementById('game'),g=c.getContext('2d'),w=c.width,h=c.height;g.save();if(shakeFrames>0){g.translate((Math.random()-.5)*12*devicePixelRatio,(Math.random()-.5)*8*devicePixelRatio);shakeFrames--}g.clearRect(0,0,w,h);
+  // Paysage tropical inspiré d’Haïti : ciel, collines et végétation
+  const sky=g.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#73c7f5');sky.addColorStop(.42,'#c7edff');sky.addColorStop(.43,'#247346');sky.addColorStop(1,'#102d26');g.fillStyle=sky;g.fillRect(0,0,w,h);
+  // Décors propres à chaque circuit haïtien (version 24.0).
+  if(readWorldOptions().buildings&&track==='Port-au-Prince'){
+    // Silhouette urbaine et bâtiments colorés.
+    g.fillStyle='#526b7a';
+    for(let i=0;i<14;i++){const bw=w*.035+(i%3)*w*.012,bh=h*(.09+(i%4)*.025),x=i*w/14;g.fillRect(x,h*.43-bh,bw,bh);g.fillStyle=['#d7a36a','#d7dce0','#c66a5c','#e7c77a'][i%4];g.fillRect(x+2,h*.43-bh+3,bw-4,bh-3);g.fillStyle='#526b7a';}
+    g.fillStyle='#f5d36a';g.beginPath();g.arc(w*.82,h*.13,w*.045,0,Math.PI*2);g.fill();
+  } else if(readWorldOptions().buildings&&track==='Cap-Haïtien'){
+    // Montagne et silhouette inspirée de la Citadelle.
+    g.fillStyle='#315b42';g.beginPath();g.moveTo(w*.12,h*.44);g.lineTo(w*.34,h*.18);g.lineTo(w*.58,h*.44);g.closePath();g.fill();
+    g.fillStyle='#6d6250';g.fillRect(w*.34,h*.25,w*.25,h*.07);g.fillRect(w*.38,h*.20,w*.17,h*.06);
+    g.fillStyle='#b7a98d';g.fillRect(w*.37,h*.22,w*.19,h*.025);
+    g.fillStyle='#273f36';g.beginPath();g.moveTo(w*.02,h*.45);g.quadraticCurveTo(w*.45,h*.25,w*.95,h*.45);g.closePath();g.fill();
+  } else if(readWorldOptions().buildings&&track==='Jacmel'){
+    // Horizon marin, vagues et maisons côtières.
+    g.fillStyle='#1686ad';g.fillRect(0,h*.32,w,h*.13);
+    g.strokeStyle='#a8e7f2';g.lineWidth=2;for(let i=0;i<7;i++){g.beginPath();g.moveTo(i*w/7,h*(.35+(i%3)*.025));g.quadraticCurveTo(i*w/7+w*.04,h*.32,(i+1)*w/7,h*(.35+(i%3)*.025));g.stroke();}
+    for(let i=0;i<8;i++){const x=i*w/8;g.fillStyle=['#f2b45c','#e76f62','#e8d59a','#6bb6a1'][i%4];g.fillRect(x,h*.39,w*.055,h*.055);g.fillStyle='#8d4038';g.beginPath();g.moveTo(x-w*.004,h*.39);g.lineTo(x+w*.027,h*.355);g.lineTo(x+w*.06,h*.39);g.fill();}
+  } else {
+    // Relief montagneux plus marqué pour le circuit des hauteurs.
+    g.fillStyle='#28553d';g.beginPath();g.moveTo(0,h*.46);g.lineTo(w*.18,h*.17);g.lineTo(w*.32,h*.38);g.lineTo(w*.53,h*.11);g.lineTo(w*.72,h*.39);g.lineTo(w*.88,h*.2);g.lineTo(w,h*.43);g.closePath();g.fill();
+    g.fillStyle='#d5d9d4';for(const pt of [[.18,.17],[.53,.11],[.88,.2]]){g.beginPath();g.moveTo(w*pt[0],h*pt[1]);g.lineTo(w*(pt[0]-.035),h*(pt[1]+.06));g.lineTo(w*(pt[0]+.04),h*(pt[1]+.06));g.closePath();g.fill();}
+  }
+  // Collines au loin
+  g.fillStyle='#276b4a';g.beginPath();g.moveTo(0,h*.42);for(let xx=0;xx<=w;xx+=w/8)g.lineTo(xx,h*(.28+Math.abs(Math.sin(xx*.012))* .12));g.lineTo(w,h*.5);g.lineTo(0,h*.5);g.closePath();g.fill();
+  const road=w*.78, baseLeft=(w-road)/2;
+  // La route ondule doucement : les quatre voies suivent les courbes ensemble.
+  const curveAt=(y)=>Math.sin((y/h)*Math.PI*1.35 + frame*.012)*w*.075 + Math.sin((y/h)*Math.PI*2.1-frame*.006)*w*.025;
+  const roadLeftAt=(y)=>baseLeft+curveAt(y);
+  const laneX=(y,lane)=>roadLeftAt(y)+road*(lane+.5)/4;
+  const roadEdge=(y,side)=>roadLeftAt(y)+(side?road:0);
+  // Végétation et petites maisons sur les bas-côtés, sur le paysage existant.
+  for(let y=-(frame%190);y<h;y+=190){
+    const depth=Math.max(.45,Math.min(1.2,(y+h*.25)/h));
+    for(const side of [-1,1]){
+      const edge=roadEdge(Math.max(0,Math.min(h,y)),side>0);
+      const x=edge+side*(w*.055+Math.sin(y*.03)*w*.012);
+      if(((Math.floor((y+frame)/190)+(side===1?1:0))%3)===0){
+        g.fillStyle='#6b4229';g.fillRect(x-w*.008,y,w*.016,w*.035);
+        g.fillStyle='#176b43';g.beginPath();g.arc(x,y,w*.028*depth,0,Math.PI*2);g.fill();
+        g.fillStyle='#278c51';g.beginPath();g.arc(x-w*.012,y-w*.012,w*.018*depth,0,Math.PI*2);g.fill();
+      }else if(((Math.floor((y+frame)/190)+(side===1?0:1))%4)===0){
+        g.fillStyle='#e9d6ad';g.fillRect(x-w*.025,y,w*.05,w*.035);
+        g.fillStyle='#b93836';g.beginPath();g.moveTo(x-w*.03,y);g.lineTo(x,y-w*.025);g.lineTo(x+w*.03,y);g.closePath();g.fill();
+        g.fillStyle='#27394b';g.fillRect(x-w*.006,y+w*.012,w*.012,w*.023);
+      }
+    }
+  }
+  // Asphalte dessiné en bandes pour que les bords suivent la courbe.
+  g.beginPath();g.moveTo(roadEdge(0,0),0);g.lineTo(roadEdge(0,1),0);
+  for(let y=0;y<=h;y+=Math.max(8,h/36))g.lineTo(roadEdge(y,1),y);
+  g.lineTo(roadEdge(h,0),h);for(let y=h;y>=0;y-=Math.max(8,h/36))g.lineTo(roadEdge(y,0),y);g.closePath();g.fillStyle='#353d49';g.fill();
+  // Trois séparateurs en pointillés suivant la route incurvée.
+  g.save();g.strokeStyle='#f5f0d6';g.lineWidth=Math.max(2,w*.004);g.setLineDash([Math.max(14,w*.035),Math.max(12,w*.025)]);g.lineDashOffset=-(frame%70);
+  for(let i=1;i<=3;i++){g.beginPath();for(let y=0;y<=h;y+=Math.max(8,h/36)){const x=roadLeftAt(y)+road*i/4;if(y===0)g.moveTo(x,y);else g.lineTo(x,y)}g.stroke()}g.restore();
+  // Bords patriotiques bleu et rouge, dessinés le long des courbes.
+  for(const side of [0,1]){g.strokeStyle='#1746a2';g.lineWidth=5;g.beginPath();for(let y=0;y<=h;y+=Math.max(8,h/36)){const x=roadEdge(y,side);if(y===0)g.moveTo(x,y);else g.lineTo(x,y)}g.stroke();g.strokeStyle='#e63946';g.lineWidth=2;g.beginPath();for(let y=0;y<=h;y+=Math.max(8,h/36)){const x=roadEdge(y,side)+(side?5:-5);if(y===0)g.moveTo(x,y);else g.lineTo(x,y)}g.stroke();}
+  // Reflets de chaussée : la pluie donne à l'asphalte un aspect humide animé.
+  if(readWorldOptions().weatherFx&&weather==='rain'){
+    g.save();g.globalCompositeOperation='screen';
+    for(let i=0;i<13;i++){
+      const yy=((i*83+frame*2.7)%(h+40))-20;
+      const left=roadLeftAt(yy),right=left+road;
+      const bandW=Math.max(3,road*(.012+(i%3)*.006));
+      const xx=left+road*(.12+((i*29)%72)/100);
+      const shine=g.createLinearGradient(xx,yy,xx+bandW,yy+h*.07);
+      shine.addColorStop(0,'rgba(190,225,255,0)');
+      shine.addColorStop(.5,'rgba(190,225,255,.12)');
+      shine.addColorStop(1,'rgba(190,225,255,0)');
+      g.fillStyle=shine;g.fillRect(Math.max(left,xx),yy,Math.min(bandW,right-xx),h*.07);
+    }
+    g.restore();
+  }
+
+  // Ponts périodiques : tablier, garde-corps et piliers visibles au passage.
+  const scenePhase=frame%800;
+  if(readWorldOptions().bridges&&scenePhase>300&&scenePhase<430){
+    const yy=(scenePhase-520)/170*h;
+    g.fillStyle='#737e89';g.fillRect(0,yy,w,Math.max(12,h*.055));
+    g.fillStyle='#c8d0d7';g.fillRect(0,yy,w,Math.max(3,h*.009));g.fillRect(0,yy+h*.045,w,Math.max(3,h*.009));
+    for(let x=0;x<w;x+=Math.max(24,w*.08)){g.fillStyle='#e1e6ea';g.fillRect(x,yy,Math.max(3,w*.009),h*.055)}
+  }
+  // Bandes de bord rouge/blanc animées, alignées sur les côtés de la route.
+  for(let y=-35+(frame%70);y<h;y+=70){for(const side of [0,1]){const x=roadEdge(y,side);g.fillStyle='#e63946';g.fillRect(x-(side?0:7),y,7,35);}}
+  
+  // Décor interactif sur les bas-côtés.
+  const env=readWorldOptions();
+  // Balises réfléchissantes sur les bas-côtés : elles éclairent le bord sans empiéter sur les voies.
+  if(env.lights){
+    for(let y=-24+(frame%92);y<h+24;y+=92){
+      for(const side of [0,1]){
+        const edge=roadEdge(Math.max(0,Math.min(h,y)),side);
+        const x=edge+(side?1:-1)*(w*.018);
+        const pulse=.72+.28*Math.sin(frame*.09+y*.025);
+        g.save();g.globalAlpha=pulse;
+        g.fillStyle='#263443';g.beginPath();g.roundRect(x-w*.006,y,w*.012,Math.max(9,h*.018),4);g.fill();
+        g.fillStyle=(Math.floor((y+frame)/92)%2===0)?'#ffe58a':'#bde8ff';
+        g.shadowColor=g.fillStyle;g.shadowBlur=10;
+        g.beginPath();g.arc(x,y+Math.max(5,h*.009),Math.max(2,w*.004),0,Math.PI*2);g.fill();
+        g.restore();
+      }
+    }
+  }
+  // Faisceau doux des phares : éclaire la chaussée sans masquer les lignes ni les voitures.
+  if(env.lights){
+    g.save();
+    g.beginPath();g.moveTo(roadEdge(0,0),0);g.lineTo(roadEdge(0,1),0);
+    for(let y=0;y<=h;y+=Math.max(8,h/36))g.lineTo(roadEdge(y,1),y);
+    g.lineTo(roadEdge(h,0),h);
+    for(let y=h;y>=0;y-=Math.max(8,h/36))g.lineTo(roadEdge(y,0),y);
+    g.closePath();g.clip();
+    const beam=g.createLinearGradient(0,h*.42,0,h);
+    beam.addColorStop(0,'rgba(255,239,174,0)');
+    beam.addColorStop(.55,'rgba(255,239,174,.025)');
+    beam.addColorStop(1,'rgba(255,239,174,.105)');
+    g.fillStyle=beam;g.fillRect(0,h*.4,w,h*.6);
+    g.restore();
+  }
+  if(env.vegetation){for(let i=0;i<6;i++){const yy=((i*137+frame*1.8)%(h+100))-50;for(const side of [-1,1]){const px=roadEdge(yy,side===1?1:0)+side*(w*.055+(i%3)*w*.018);const sc=.35+Math.max(0,yy/h)*.7;g.save();g.translate(px,yy);g.scale(sc,sc);g.strokeStyle='#68452b';g.lineWidth=5;g.beginPath();g.moveTo(0,0);g.lineTo(0,-30);g.stroke();g.fillStyle='#16834b';for(let k=0;k<5;k++){g.save();g.rotate((k-2)*.48+Math.sin(frame*.025+i)*.08);g.beginPath();g.ellipse(0,-31,7,22,0,0,Math.PI*2);g.fill();g.restore()}g.restore();}}}
+  if(env.buildings){for(let i=0;i<4;i++){const yy=((i*211+frame*1.25)%(h+150))-70;for(const side of [-1,1]){const px=roadEdge(yy,side===1?1:0)+side*(w*.13);const sc=.45+Math.max(0,yy/h)*.65;g.save();g.translate(px,yy);g.scale(sc,sc);g.fillStyle=['#e9b96e','#e8e0c8','#dc7862','#77b9a0'][i%4];g.fillRect(-18,-30,36,30);g.fillStyle='#8c493b';g.beginPath();g.moveTo(-22,-30);g.lineTo(0,-45);g.lineTo(22,-30);g.fill();g.fillStyle='#253b55';g.fillRect(-5,-17,10,17);g.restore();}}}
+  if(env.lights){
+    // Carrefour animé : le feu alterne rouge, jaune et vert avec marquage au sol.
+    const ly=h*.30,lx=roadEdge(ly,0)-w*.055,signalPhase=Math.floor(frame/115)%3;
+    const signalColor=['#ef4444','#facc15','#22c55e'][signalPhase];
+    g.fillStyle='#27313b';g.fillRect(lx-3,ly-4,6,h*.20);
+    g.fillStyle='#171b20';g.fillRect(lx-11,ly-45,22,45);
+    ['#ef4444','#facc15','#22c55e'].forEach((col,i)=>{g.beginPath();g.fillStyle=i===signalPhase?col:'#424242';g.shadowColor=i===signalPhase?col:'transparent';g.shadowBlur=i===signalPhase?12:0;g.arc(lx,ly-36+i*14,5,0,Math.PI*2);g.fill();g.shadowBlur=0});
+    const stopY=ly+h*.105,left=roadLeftAt(stopY),right=left+road;
+    // Véritable carrefour visible : chaussée transversale, bordures et passages piétons.
+    const junctionY=ly+h*.055, junctionH=h*.105;
+    g.fillStyle='#252e38';g.fillRect(left-w*.12,junctionY,right-left+w*.24,junctionH);
+    g.fillStyle='#b8bfc5';g.fillRect(left-w*.12,junctionY,road+w*.24,Math.max(3,h*.006));
+    g.fillRect(left-w*.12,junctionY+junctionH,road+w*.24,Math.max(3,h*.006));
+    for(let k=0;k<13;k++){
+      const sx=left+(right-left)*k/13;
+      g.fillStyle='#f5f5ed';g.fillRect(sx,junctionY+h*.012,Math.max(3,road/35),junctionH-h*.024);
+    }
+    g.fillStyle=signalPhase===0?'#f8fafc':'#d8dee8';g.fillRect(left,stopY,right-left,Math.max(3,h*.006));
+    if(signalPhase===0||signalPhase===1){const stripeW=(right-left)/18;for(let k=0;k<18;k++){g.fillStyle='#f4f4f4';g.fillRect(left+k*stripeW,stopY+h*.018,stripeW*.58,h*.025)}}
+    g.fillStyle=signalColor;g.font=`900 ${Math.max(10,w*.025)}px system-ui`;g.textAlign='left';g.fillText(signalPhase===0?'STOP':signalPhase===1?'RALENTIR':'CIRCULEZ',lx+16,ly-20);
+    // Panneaux directionnels de part et d'autre du carrefour.
+    const signY=junctionY-h*.035, signW=Math.max(54,w*.105), signH=Math.max(22,h*.038);
+    for(const side of [-1,1]){
+      const signX=side<0?Math.max(4,left-signW-w*.045):Math.min(w-signW-4,right+w*.045);
+      g.fillStyle='#263b35';g.fillRect(signX,signY,signW,signH);
+      g.strokeStyle='#f4f7ef';g.lineWidth=Math.max(1,w*.002);g.strokeRect(signX,signY,signW,signH);
+      g.fillStyle='#fff';g.font=`bold ${Math.max(9,w*.018)}px system-ui`;g.textAlign='center';
+      g.fillText(side<0?'CENTRE  ←':'→  SORTIE',signX+signW/2,signY+signH*.66);
+    }
+    // Flèches peintes au sol pour rendre la bifurcation immédiatement lisible.
+    const arrowY=junctionY+junctionH*.55;
+    for(const side of [-1,1]){
+      const ax=side<0?left+road*.23:right-road*.23;
+      g.save();g.translate(ax,arrowY);g.rotate(side<0?-Math.PI/2:Math.PI/2);
+      g.fillStyle='rgba(255,255,255,.88)';g.beginPath();g.moveTo(0,-h*.022);g.lineTo(-w*.018,h*.012);g.lineTo(-w*.007,h*.012);g.lineTo(-w*.007,h*.027);g.lineTo(w*.007,h*.027);g.lineTo(w*.007,h*.012);g.lineTo(w*.018,h*.012);g.closePath();g.fill();g.restore();
+    }
+  }
+  if(env.barriers){for(let i=0;i<3;i++){const yy=((i*260+frame*2.2)%(h+80))-40;const bx=roadEdge(yy,1)+w*.025;g.fillStyle='#f4f4f4';g.fillRect(bx,yy,Math.max(18,w*.045),Math.max(7,h*.014));g.fillStyle='#e63946';for(let k=0;k<3;k++)g.fillRect(bx+k*w*.015,yy,w*.008,h*.014);}}
+  // Tunnel bien visible : portail, parois latérales, éclairage et perspective.
+  if(env.tunnels&&scenePhase>470&&scenePhase<760){
+    const progress=(scenePhase-470)/290;
+    const openingTop=h*(.12+.10*progress), openingBottom=h*.62;
+    g.fillStyle='rgba(8,14,23,.28)';g.fillRect(0,0,w,h*.72);
+    g.fillStyle='#172330';
+    g.beginPath();g.moveTo(0,0);g.lineTo(w,0);g.lineTo(w,openingBottom);g.quadraticCurveTo(w*.5,openingTop-h*.18,0,openingBottom);g.closePath();g.fill();
+    g.fillStyle='#303f4d';g.fillRect(0,openingBottom,w,h*.035);
+    g.strokeStyle='#8b9aa7';g.lineWidth=Math.max(4,w*.012);g.beginPath();g.moveTo(0,openingBottom);g.quadraticCurveTo(w*.5,openingTop-h*.18,w,openingBottom);g.stroke();
+    g.fillStyle='#ffe7a0';g.shadowColor='#ffe7a0';g.shadowBlur=18;
+    for(let i=0;i<5;i++){const lx=w*(.18+i*.16),ly=openingTop+h*(.18+(i%2)*.035);g.beginPath();g.ellipse(lx,ly,w*.012,h*.009,0,0,Math.PI*2);g.fill();}
+    g.shadowBlur=0;
+    // Balises lumineuses répétées le long des deux parois du tunnel.
+    for(let i=0;i<7;i++){
+      const by=openingTop+h*(.22+i*.047), bx=w*(.08+i*.012);
+      for(const side of [-1,1]){g.fillStyle=i%2?'#f8d477':'#d9f1ff';g.shadowColor=g.fillStyle;g.shadowBlur=9;g.fillRect(side<0?bx:w-bx-w*.012,by,Math.max(3,w*.009),Math.max(5,h*.012));}
+    }
+    g.shadowBlur=0;
+    g.fillStyle='#e7edf2';g.font=`900 ${Math.max(12,w*.028)}px system-ui`;g.textAlign='center';g.fillText('TUNNEL',w*.5,h*.075);
+  }
+  // Ligne d'arrivée à damier qui approche selon la distance restante.
+  if(distanceLeft<180){const yy=Math.max(8,Math.min(h-24,(180-distanceLeft)/180*h*.82));const tile=Math.max(10,Math.floor(w/22));for(let rr=0;rr<2;rr++){for(let cc=0;cc<22;cc++){g.fillStyle=((rr+cc)%2===0)?'#fff':'#101010';g.fillRect(cc*tile,yy+rr*tile,tile,tile)}}g.fillStyle='#ffd447';g.font='900 18px system-ui';g.textAlign='center';g.fillText('🏁 ARRIVÉE 🏁',w/2,Math.max(25,yy-10));}
+  // Voiture du joueur : carrosserie GT réaliste et balisage très visible
+  let cw=Math.max(42,w*.105),ch=cw*1.5,cy=h-ch-22,cx=laneX(cy,lane);
+  drawSupercar(g,cx,cy,cw,ch,carColor(selected),true);
+  // Phares avant et feux arrière du véhicule du joueur, liés à l'option « Feux ».
+  if(env.lights){
+    g.save();
+    const lampR=Math.max(2,cw*.055);
+    g.shadowBlur=Math.max(7,cw*.22);
+    g.shadowColor='#fff0b8';g.fillStyle='#fff4c7';
+    for(const side of [-1,1]){
+      g.beginPath();g.ellipse(cx+side*cw*.29,cy+ch*.12,lampR,lampR*.72,0,0,Math.PI*2);g.fill();
+    }
+    g.shadowBlur=Math.max(6,cw*.18);g.shadowColor='#ff263f';g.fillStyle='#ff394d';
+    for(const side of [-1,1]){
+      g.beginPath();g.ellipse(cx+side*cw*.29,cy+ch*.91,lampR*.9,lampR*.65,0,0,Math.PI*2);g.fill();
+    }
+    g.restore();
+  }
+  // Obstacles, pièces et adversaires contrôlés par une IA simple
+  if(started){
+    for(const o of obstacles){const ox=laneX(o.y,o.lane);if(o.type==='cone'){g.font=`${Math.max(22,cw*.55)}px sans-serif`;g.textAlign='center';g.fillText('🚧',ox,o.y)}else{g.font=`${Math.max(22,cw*.5)}px sans-serif`;g.textAlign='center';g.fillText('🪙',ox,o.y)}}
+    for(const t of traffic){const tx=laneX(t.y,t.lane),tw=cw*t.scale,th=ch*t.scale;drawTrafficVehicle(g,tx,t.y,tw,th,t);if(env.lights){g.save();const glow=Math.max(2,tw*.075);g.shadowBlur=Math.max(5,tw*.16);g.shadowColor='#fff0b0';g.fillStyle='#fff2bd';for(const side of [-1,1]){g.beginPath();g.arc(tx+side*tw*.25,t.y+th*.10,glow,0,Math.PI*2);g.fill()}g.shadowBlur=Math.max(4,tw*.12);g.shadowColor='#ff3434';g.fillStyle='#ff4545';for(const side of [-1,1]){g.beginPath();g.arc(tx+side*tw*.25,t.y+th*.88,glow*.8,0,Math.PI*2);g.fill()}g.restore()}g.fillStyle='#fff';g.font=`bold ${Math.max(9,cw*.13)}px system-ui`;g.textAlign='center';g.fillText(t.kind,tx,t.y-5)}
+    for(const r of rivals){const rx=laneX(r.y,r.lane);drawSupercar(g,rx,r.y,cw*.70,ch*.78,r.color,false);g.fillStyle='#ffffff';g.font=`bold ${Math.max(9,cw*.14)}px system-ui`;g.textAlign='center';g.fillText(r.name,rx,r.y-5)}
+  }
+  // Météo dynamique : pluie, brouillard ou soleil avec effets de piste.
+  if(readWorldOptions().weatherFx&&weather==='rain'){
+    g.fillStyle='#10243b22';g.fillRect(0,0,w,h);
+    g.strokeStyle='rgba(205,230,255,.58)';g.lineWidth=Math.max(1,w*.0018);
+    for(let i=0;i<95;i++){const rx=((i*97+frame*13)%(w+80))-40,ry=((i*53+frame*19)%(h+40))-20;g.beginPath();g.moveTo(rx,ry);g.lineTo(rx-w*.012,ry+h*.045);g.stroke()}
+    // Éclaboussures près des roues avant de la voiture.
+    g.fillStyle='rgba(170,220,245,.55)';for(let i=0;i<12;i++){const px=cx+(i%2?1:-1)*cw*(.48+(i%4)*.09),py=cy+ch*(.35+(i%5)*.1);g.beginPath();g.arc(px,py,Math.max(1,cw*.025),0,Math.PI*2);g.fill()}
+  }else if(readWorldOptions().weatherFx&&weather==='fog'){
+    const mist=g.createLinearGradient(0,0,0,h);mist.addColorStop(0,'rgba(220,235,240,.48)');mist.addColorStop(.55,'rgba(210,225,230,.20)');mist.addColorStop(1,'rgba(210,225,230,.08)');g.fillStyle=mist;g.fillRect(0,0,w,h);
+    for(let i=0;i<5;i++){g.fillStyle=`rgba(230,240,242,${.055+(i%2)*.025})`;g.beginPath();g.ellipse((i*233+frame*.35)%(w+240)-120,h*(.22+i*.13),w*.32,h*.035,0,0,Math.PI*2);g.fill()}
+  }else if(readWorldOptions().weatherFx){
+    g.fillStyle='rgba(255,214,90,.10)';g.beginPath();g.arc(w*.84,h*.12,w*.09,0,Math.PI*2);g.fill();
+  }
+  if(readWorldOptions().weatherFx){
+    const weatherLabel=weather==='rain'?'🌧 PISTE MOUILLÉE':weather==='fog'?'🌫 VISIBILITÉ RÉDUITE':'☀️ TEMPS ENSOLEILLÉ';
+    g.save();g.font=`800 ${Math.max(10,w*.022)}px system-ui`;g.textAlign='left';
+    const labelW=g.measureText(weatherLabel).width+18;
+    g.fillStyle='rgba(8,18,32,.72)';g.fillRect(9,9,labelW,Math.max(25,h*.045));
+    g.fillStyle='#fff';g.fillText(weatherLabel,18,9+Math.max(17,h*.031));g.restore();
+  }
+  // Poussière soulevée sur les bas-côtés lorsque la voiture accélère.
+  if(started&&accelerating){for(let i=0;i<10;i++){const side=i%2?1:-1,px=cx+side*cw*(.52+(i%4)*.12),py=cy+ch*(.72+(i%5)*.055);g.fillStyle=weather==='rain'?'rgba(160,210,235,.25)':'rgba(210,185,130,.22)';g.beginPath();g.arc(px,py,Math.max(2,cw*(.035+(i%3)*.018)),0,Math.PI*2);g.fill()}}
+  // Échappement animé : petites volutes de fumée derrière la voiture.
+  if(started){
+    const smokeCount=turboFrames>0?12:7;
+    for(let i=0;i<smokeCount;i++){
+      const phase=(frame*2.4+i*17)%42, spread=(phase/42)*cw*.48;
+      const sx=cx+Math.sin(i*2.1+frame*.035)*spread;
+      const sy=cy+ch*.91+phase*.48;
+      const alpha=(1-phase/42)*.22;
+      g.fillStyle=turboFrames>0?`rgba(255,190,75,${alpha})`:`rgba(205,215,225,${alpha})`;
+      g.beginPath();g.arc(sx,sy,Math.max(2,cw*(.025+phase/42*.09)),0,Math.PI*2);g.fill();
+    }
+  }
+  // Cycle jour/nuit automatique : un cycle complet toutes les 3 minutes de course.
+  const dayPhase=(frame%5400)/5400;
+  const night=Math.max(0,Math.min(1,(Math.cos(dayPhase*Math.PI*2-Math.PI)+.12)*1.15));
+  if(night>.04){
+    g.fillStyle=`rgba(5,10,30,${night*.68})`;g.fillRect(0,0,w,h);
+    // Étoiles discrètes visibles la nuit.
+    g.fillStyle=`rgba(255,255,225,${night*.85})`;
+    for(let i=0;i<28;i++){const sx=(i*137+31)%w,sy=(i*47+19)%(h*.34);g.fillRect(sx,sy,Math.max(1,w*.002),Math.max(1,w*.002));}
+    // Faisceaux des phares sur la chaussée.
+    const beam=g.createRadialGradient(cx,cy+ch*.12,2,cx,cy-ch*.3,h*.72);
+    beam.addColorStop(0,`rgba(255,245,190,${night*.22})`);beam.addColorStop(1,'rgba(255,245,190,0)');
+    g.fillStyle=beam;g.beginPath();g.moveTo(cx-cw*.34,cy+ch*.1);g.lineTo(cx-w*.34,0);g.lineTo(cx+w*.34,0);g.lineTo(cx+cw*.34,cy+ch*.1);g.closePath();g.fill();
+  }
+  if(turboFrames>0){g.fillStyle='#ffd447';g.font='bold 18px system-ui';g.textAlign='center';g.fillText('🚀 TURBO !',w/2,h*.18)}g.restore();
+}
+function drawTrafficVehicle(g,cx,cy,cw,ch,t){
+  if(t.kind==='CAMION'||t.kind==='BUS'){
+    g.save();const bus=t.kind==='BUS';
+    g.fillStyle='#0007';g.beginPath();g.ellipse(cx,cy+ch*.52,cw*.62,ch*.53,0,0,Math.PI*2);g.fill();
+    g.fillStyle='#10151c';[[ -.48,.18],[.32,.18],[-.48,.72],[.32,.72]].forEach(([x,y])=>{g.fillRect(cx+cw*x,cy+ch*y,cw*.16,ch*.15)});
+    g.fillStyle=t.color;g.beginPath();g.roundRect(cx-cw*.43,cy+ch*.03,cw*.86,ch*.92,Math.max(3,cw*.08));g.fill();
+    g.fillStyle='#142b3a';
+    if(bus){for(let yy=.13;yy<.58;yy+=.16){g.fillRect(cx-cw*.32,cy+ch*yy,cw*.24,ch*.105);g.fillRect(cx+cw*.08,cy+ch*yy,cw*.24,ch*.105)}g.fillStyle='#e9eef3';g.fillRect(cx-cw*.30,cy+ch*.68,cw*.60,ch*.12)}
+    else {g.fillRect(cx-cw*.29,cy+ch*.10,cw*.58,ch*.17);g.fillStyle='#e7d6a3';g.fillRect(cx-cw*.29,cy+ch*.31,cw*.58,ch*.05);g.fillStyle='#252c35';g.fillRect(cx-cw*.26,cy+ch*.78,cw*.52,ch*.10)}
+    g.fillStyle='#fff2bd';g.fillRect(cx-cw*.32,cy+ch*.01,cw*.17,ch*.045);g.fillRect(cx+cw*.15,cy+ch*.01,cw*.17,ch*.045);g.restore();return;
+  }
+  if(t.kind==='MOTO'){
+    g.save();g.fillStyle='#0008';g.beginPath();g.ellipse(cx,cy+ch*.53,cw*.33,ch*.48,0,0,Math.PI*2);g.fill();
+    g.fillStyle='#101318';g.beginPath();g.ellipse(cx,cy+ch*.17,cw*.17,ch*.13,0,0,Math.PI*2);g.fill();g.beginPath();g.ellipse(cx,cy+ch*.82,cw*.17,ch*.13,0,0,Math.PI*2);g.fill();
+    g.fillStyle=t.color;g.beginPath();g.roundRect(cx-cw*.18,cy+ch*.27,cw*.36,ch*.43,Math.max(2,cw*.06));g.fill();
+    g.fillStyle='#172b3d';g.beginPath();g.ellipse(cx,cy+ch*.48,cw*.13,ch*.14,0,0,Math.PI*2);g.fill();g.fillStyle='#fff4bd';g.beginPath();g.arc(cx,cy+ch*.08,Math.max(2,cw*.07),0,Math.PI*2);g.fill();g.restore();return;
+  }
+  drawSupercar(g,cx,cy,cw,ch,t.color,false);
+}
+function updateDamage(){const t=document.getElementById('damageText'),b=document.getElementById('damageBar');if(t)t.textContent=damage+'%';if(b){b.style.width=damage+'%';b.style.background=damage>60?'#48db80':damage>30?'#ffd447':'#ff4057'}}
+function crash(){if(collisionCooldown>0)return;collisionCooldown=55;damage=Math.max(0,damage-18);score=Math.max(0,score-12);speed=.55;shakeFrames=9;tone(95,.28,'sawtooth',.11,-55);updateDamage();if(damage===0){finishReason='lost';finishRace()}}
+function useTurbo(){if(!running||paused||!started)return;if(turboFrames>0)return;turboFrames=100;speed=1.9;tone(780,.22,'sawtooth',.08,450);}
+function finishRace(){if(finishShown)return;finishShown=true;running=false;accelerating=false;cancelAnimationFrame(raf);setEngineActive(false);stopEngine();tone(1040,.35,'sine',.09);setTimeout(()=>tone(1320,.5,'sine',.08),220);localRaceScores.push({score:score,track:track,date:new Date().toLocaleDateString()});localRaceScores.sort((a,b)=>b.score-a.score);localRaceScores=localRaceScores.slice(0,10);localStorage.arRaceScores=JSON.stringify(localRaceScores);updateCareer(score,finishReason==='finish');const rank=localRaceScores.findIndex(r=>r.score===score&&r.track===track)+1;let resultText='Mode course principale • '+track+' • Classement : '+(rank||1)+' / '+localRaceScores.length;if(gameMode==='duel'){if(multiplayerMode==='ai'){const opponent=Math.max(80,Math.floor(score*(.78+Math.random()*.48)));resultText='🤖 Adversaire IA : '+opponent+' points • '+(score>=opponent?'🏆 VICTOIRE !':'L’IA remporte le duel.');localStorage.arLastDuel=resultText;}else{duelScores[duelPlayer-1]=score;if(duelPlayer===1){resultText='Joueur 1 : '+score+' points. Passe l’appareil au joueur 2 !';document.getElementById('duelNextBtn').style.display='block';document.getElementById('duelExitBtn').style.display='none';}else{const a=duelScores[0]||0,b=duelScores[1]||0;resultText='Joueur 1 : '+a+' • Joueur 2 : '+b+' • '+(a===b?'🤝 ÉGALITÉ !':a>b?'🏆 JOUEUR 1 GAGNE !':'🏆 JOUEUR 2 GAGNE !');localStorage.arLastDuel=resultText;document.getElementById('duelExitBtn').style.display='block';}}}else if(tournamentMode){resultText='🥇 '+resolveProTournament();}else if(championshipMode&&finishReason==='finish'){const earned=pointsForScore(score);champPoints+=earned;championshipResults.push({track:track,score:score,points:earned});champRound=Math.min(4,champRound+1);save();resultText='🏆 +'+earned+' points au championnat • Total : '+champPoints+' points • Course '+champRound+'/4';}else if(championshipMode){resultText='Course non terminée : aucun point attribué. Tu peux retenter ce circuit.';}document.getElementById('finishOverlay').querySelector('h2').textContent=finishReason==='lost'?'COURSE PERDUE':'ARRIVÉE !';document.getElementById('finishScore').textContent='Score : '+score+' points'+(finishReason==='lost'?' • Voiture hors service':'');document.getElementById('finishRank').textContent=resultText;document.getElementById('finishOverlay').style.display='flex';if(gameMode!=='duel'){document.getElementById('duelNextBtn').style.display='none';document.getElementById('duelExitBtn').style.display='block';}const dh=document.getElementById('duelHistory');if(dh)dh.textContent=localStorage.arLastDuel||'Aucun duel terminé.';}
+
+function loop(){if(!running||paused)return;frame++;if(championshipMode){distanceLeft=Math.max(0,distanceLeft-(accelerating?1.15:0.75)-(turboFrames?0.65:0));document.getElementById('distanceText').textContent=Math.ceil(distanceLeft);if(distanceLeft<=0){draw();finishReason='finish';finishRace();return;}}else{distanceLeft=0;document.getElementById('distanceText').textContent='∞';}if(collisionCooldown>0)collisionCooldown--;if(turboFrames>0){turboFrames--;if(turboFrames===0)speed=accelerating?1.45:1} else speed=accelerating?1.45:1;const kmh=Math.round(Math.max(0,speed* (accelerating?118:72) * (damage<40?0.72:1)));document.getElementById('speedText').textContent=kmh;document.getElementById('speedBar').style.width=Math.min(100,kmh/2.2)+'%';score+=Math.max(1,Math.round(speed));fuel=Math.max(0,fuel-(accelerating?.006:.002)-(turboFrames?.012:0));engineTemp=Math.min(125,engineTemp+(accelerating?.018:.004)+(turboFrames?.025:0));if(fuel<=0){accelerating=false;speed=.45;}document.getElementById('rpmText').textContent=Math.round(850+kmh*42);document.getElementById('fuelText').textContent=Math.floor(fuel);document.getElementById('tempText').textContent=Math.round(engineTemp);document.getElementById('cockpitSpeed').textContent=kmh;if(frame%12===0){const wp=readWorldOptions();if(wp.environmentSound&&soundOn&&frame%300===0){const note=frame%900===0?760:frame%600===0?540:340;tone(note,.075,'sine',.022);if(frame%900===0)setTimeout(()=>{if(soundOn&&readWorldOptions().environmentSound)tone(980,.055,'sine',.014)},105);}if(wp.missions){const mb=document.getElementById('worldMissionBadge');if(mb)mb.textContent=score>=300?'✅ Mission réussie : 300 points atteints !':'🎯 Mission : atteindre 300 points ('+Math.min(score,300)+'/300)';}if(wp.minimap)drawMiniMap();}
+  const diff=difficultySettings[difficulty]||difficultySettings.medium;if(readWorldOptions().barriers&&frame%diff.obstacle===0 && obstacles.filter(o=>o.type==='cone'&&o.y< h*.42).length<2)obstacles.push({id:++obstacleId,type:'cone',lane:Math.floor(Math.random()*4),y:-20});if(frame%diff.coin===0)obstacles.push({id:++obstacleId,type:'coin',lane:Math.floor(Math.random()*4),y:-20});
+  // Trafic routier équilibré : les voitures civiles apparaissent moins souvent sur les quatre voies.
+  if(frame%diff.traffic===0&&traffic.length<diff.maxTraffic){const tl=Math.floor(Math.random()*4);const kinds=['AUTO','TAXI','SUV','VAN','CAMION','BUS','MOTO'];const kind=kinds[Math.floor(Math.random()*kinds.length)];const scale=kind==='CAMION'?.72+Math.random()*.07:kind==='BUS'?.68+Math.random()*.08:kind==='MOTO'?.34+Math.random()*.08:.54+Math.random()*.12;traffic.push({id:++trafficId,lane:tl,target:tl,y:-125,kind,color:['#f2f2f2','#e9b949','#49a3e8','#d94b4b','#55b879','#a78bfa','#f28c28'][Math.floor(Math.random()*7)],scale,changeAt:frame+90+Math.floor(Math.random()*100),passed:false})}
+  // Les rivaux arrivent à intervalles réguliers, changent de voie et tentent de dépasser.
+  if(frame%diff.rival===0&&rivals.length<diff.maxRivals){const lanes=[0,1,2,3];let rl=lanes[Math.floor(Math.random()*4)];rivals.push({id:++rivalId,lane:rl,target:rl,y:-90,color:['#f2a23a','#54a6ff','#d75a7b','#8be36b'][Math.floor(Math.random()*4)],name:['RIVAL A','RIVAL B','RIVAL C','RIVAL D'][Math.floor(Math.random()*4)],changeAt:frame+45+Math.floor(Math.random()*55),passed:false})}
+  const c=document.getElementById('game'),h=c.height,cw=Math.max(48,c.width*.13),ch=cw*1.5,playerY=h-ch-22;
+  for(const o of obstacles){o.y+=(3.3*speed+frame*.003)*devicePixelRatio;if(o.y>playerY-ch*.15&&o.y<playerY+ch*.5&&o.lane===lane){if(o.type==='coin'){coins+=5;tone(990,.09,'sine',.07);o.y=h+500;save()}else{crash();o.y=h+500}}}obstacles=obstacles.filter(o=>o.y<h+50);
+  for(const t of traffic){const vehicleSpeed=t.kind==='CAMION'?.82:t.kind==='BUS'?.94:t.kind==='MOTO'?2.05:t.kind==='SUV'?1.48:1.30;t.y+=(vehicleSpeed+(t.id%3)*.12)*speed*devicePixelRatio;if(frame>=t.changeAt&&t.y<h*.72){const options=[t.lane-1,t.lane+1].filter(l=>l>=0&&l<4);const safe=options.filter(l=>!traffic.some(other=>other.id!==t.id&&(other.lane===l||other.target===l)&&Math.abs(other.y-t.y)<ch*1.55)&&!rivals.some(r=>(r.lane===l||r.target===l)&&Math.abs(r.y-t.y)<ch*1.45));if(safe.length){const currentBlocked=traffic.some(other=>other.id!==t.id&&other.lane===t.lane&&other.y<t.y&&t.y-other.y<ch*2.2);if(currentBlocked||Math.random()<.22)t.target=safe[Math.floor(Math.random()*safe.length)]}t.changeAt=frame+75+Math.floor(Math.random()*95)}if(t.lane!==t.target&&frame%12===0)t.lane+=Math.sign(t.target-t.lane);if(!t.passed&&t.y>playerY-ch*.22&&t.y<playerY+ch*.42&&t.lane===lane){crash();t.passed=true;t.y=h+200}else if(t.y>playerY+ch*.5)t.passed=true;}traffic=traffic.filter(t=>t.y<h+100);
+  for(const r of rivals){r.y+=(2.2+(r.id%3)*.28)*speed*devicePixelRatio;if(frame>=r.changeAt&&r.y<h*.78){const options=[r.lane-1,r.lane+1].filter(l=>l>=0&&l<4);const safe=options.filter(l=>!traffic.some(t=>(t.lane===l||t.target===l)&&Math.abs(t.y-r.y)<ch*1.6)&&!rivals.some(other=>other.id!==r.id&&(other.lane===l||other.target===l)&&Math.abs(other.y-r.y)<ch*1.45));if(safe.length){const blocked=traffic.some(t=>t.lane===r.lane&&t.y<r.y&&r.y-t.y<ch*2);if(blocked||Math.random()<.18)r.target=safe[Math.floor(Math.random()*safe.length)]}r.changeAt=frame+55+Math.floor(Math.random()*85)}if(r.lane!==r.target&&frame%8===0)r.lane+=Math.sign(r.target-r.lane);if(!r.passed&&r.y>playerY-ch*.22&&r.y<playerY+ch*.42&&r.lane===lane){crash();r.passed=true;r.y=h+200}else if(r.y>playerY+ch*.5)r.passed=true;}rivals=rivals.filter(r=>r.y<h+100);
+  if(engineOsc&&audioCtx){const rpm=92+Math.min(75,score%110)+(accelerating?48:0)+(turboFrames?70:0);engineOsc.frequency.setTargetAtTime(rpm,audioCtx.currentTime,.12);if(engineOsc2)engineOsc2.frequency.setTargetAtTime(rpm*.5,audioCtx.currentTime,.12);if(engineFilter)engineFilter.frequency.setTargetAtTime(950+(accelerating?450:0)+(turboFrames?650:0),audioCtx.currentTime,.12)}document.getElementById('score').textContent=score;draw();raf=requestAnimationFrame(loop)}function steer(d){if(!running||paused)return;const drift=weather==='rain'?.88:weather==='fog'?.94:1;lane=Math.max(0,Math.min(3,lane+Math.sign(d*drift)));tone(170,.045,'sine',.012);draw()}function togglePause(){if(!running)return;paused=!paused;document.getElementById('pauseTop').textContent=paused?'▶ REPRENDRE':'⏸ PAUSE';if(paused){setEngineActive(false);tone(300,.1,'sine',.04);cancelAnimationFrame(raf);document.getElementById('countdown').style.display='flex';document.getElementById('countdown').textContent='PAUSE'}else{ensureAudio();startEngine();setEngineActive(true);tone(520,.1,'sine',.04);document.getElementById('countdown').style.display='none';loop()}}
+function nextDuelPlayer(){duelPlayer=2;document.getElementById('finishOverlay').style.display='none';document.getElementById('duelNextBtn').style.display='none';document.getElementById('duelExitBtn').style.display='block';startRace()}
+function exitRace(){running=false;paused=false;accelerating=false;clearInterval(timer);cancelAnimationFrame(raf);stopEngine();document.getElementById('race').classList.remove('show');document.getElementById('home').style.display='block';if(started){coins+=Math.max(10,Math.floor(score/8));races++;best=Math.max(best,score);}save();if(tournamentMode){tournamentMode=false;hidePanels();document.getElementById('proTournament').classList.add('show');refreshProTournament();}else if(gameMode==='duel'){championshipMode=false;hidePanels();document.getElementById('multiplayer').classList.add('show');const dh=document.getElementById('duelHistory');if(dh)dh.textContent=localStorage.arLastDuel||'Duel en cours.';}else if(championshipMode){hidePanels();document.getElementById('championship').classList.add('show');refreshChampionship();if(champRound>=4){document.getElementById('champStatus').textContent='🏆 Championnat terminé ! Score total : '+champPoints+' points.';document.getElementById('champButton').textContent='RECOMMENCER LE CHAMPIONNAT'}}else openPanel('records')}
+function bindHold(id,fn){const el=document.getElementById(id);el.addEventListener('pointerdown',e=>{e.preventDefault();fn()})}bindHold('accelerate',()=>{if(running&&!paused){accelerating=true;tone(420,.07,'sine',.025)}});['pointerup','pointercancel','pointerleave'].forEach(ev=>document.getElementById('accelerate').addEventListener(ev,()=>accelerating=false));bindHold('turboBtn',useTurbo);bindHold('left',()=>steer(-1));bindHold('right',()=>steer(1));bindHold('brake',()=>{if(started&&!paused){tone(125,.22,'sawtooth',.055,-65);score=Math.max(0,score-2);document.getElementById('score').textContent=score;draw()}});window.addEventListener('resize',()=>{if(document.getElementById('race').classList.contains('show')){resize();draw()}});save();loadWorldOptions();refreshChampionship();refreshProTournament();refreshCareer();document.getElementById('eng').textContent=eng;document.getElementById('hand').textContent=hand;document.getElementById('armor').textContent=armor;
+</script></body></html>
