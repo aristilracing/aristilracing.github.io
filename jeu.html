@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d19">
+<title>Le jeu | ARISTIL RACING</title>
+<style>
+:root{--red:#ed3548;--blue:#153b82;--dark:#080d19;--panel:#121d30;--muted:#bac5d6}
+*{box-sizing:border-box}body{margin:0;background:var(--dark);color:#f7f8fb;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+header{padding:18px clamp(18px,5vw,65px);display:flex;justify-content:space-between;align-items:center;gap:15px;background:#050914;border-bottom:1px solid #26334a}
+.brand{font-weight:900;letter-spacing:2px}.brand span{color:var(--red)}a{color:white}.back{color:#fff;text-decoration:none;border:1px solid #536078;border-radius:8px;padding:9px 14px}
+main{width:min(1050px,92%);margin:auto;padding:48px 0 70px}.tag{color:#ff6978;text-transform:uppercase;font-size:.8rem;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(2.2rem,7vw,4rem);line-height:1.08;margin:10px 0} .lead{color:var(--muted);max-width:720px}
+.notice{margin:25px 0;padding:15px 18px;border-left:4px solid #e8b34b;background:#211e18;color:#f5dfb3;border-radius:7px}
+h2{margin:42px 0 16px;font-size:1.8rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{padding:23px;border:1px solid #293750;border-radius:14px;background:linear-gradient(145deg,#16243b,#101827)}
+.icon{font-size:2rem}.card h3{margin:8px 0}.card p{color:var(--muted);margin:0 0 12px}
+.badge{display:inline-block;font-size:.78rem;color:#ffe2a1;background:#3a2d18;border-radius:20px;padding:4px 10px}
+footer{text-align:center;padding:25px;color:#94a1b5;border-top:1px solid #202b3e}
+@media(max-width:650px){header{flex-direction:column}.grid{grid-template-columns:1fr}main{padding-top:35px}}
+</style>
+</head>
+<body>
+<header><div class="brand">ARISTIL <span>RACING</span> 🇭🇹</div><a class="back" href="index.html">← Retour à l'accueil</a></header>
+<main>
+<span class="tag">Bienvenue dans l'univers des courses</span>
+<h1>Choisis ton défi ! 🏁</h1>
+<p class="lead">Retrouve ici les modes de course et les championnats prévus dans ARISTIL RACING. Cette page présente les catégories du jeu ; les boutons de lancement seront activés lorsqu'elles seront reliées à la version jouable.</p>
+<div class="notice"><strong>À savoir :</strong> cette page est une présentation. Elle ne lance pas encore les courses et ne télécharge pas le jeu.</div>
+
+<h2>🏎️ Modes de course</h2>
+<div class="grid">
+<article class="card"><div class="icon">🏁</div><h3>Course rapide</h3><p>Une course simple pour prendre la piste et se familiariser avec la conduite.</p><span class="badge">Mode prévu</span></article>
+<article class="card"><div class="icon">⏱️</div><h3>Contre-la-montre</h3><p>Essaie de réaliser le meilleur temps sur le circuit.</p><span class="badge">Mode prévu</span></article>
+<article class="card"><div class="icon">🚦</div><h3>Course principale</h3><p>Participe à des courses avec des objectifs et une arrivée à atteindre.</p><span class="badge">Mode prévu</span></article>
+<article class="card"><div class="icon">🛣️</div><h3>Course sur autoroute</h3><p>Découvre les pistes à plusieurs voies, avec des environnements et des défis variés.</p><span class="badge">Mode prévu</span></article>
+</div>
+
+<h2>🏆 Championnats</h2>
+<div class="grid">
+<article class="card"><div class="icon">🥉</div><h3>Championnat débutant</h3><p>Progresse à travers une série de courses et découvre les bases de la compétition.</p><span class="badge">Prévu</span></article>
+<article class="card"><div class="icon">🥈</div><h3>Championnat professionnel</h3><p>Relève des défis plus exigeants et accumule des points au classement.</p><span class="badge">Prévu</span></article>
+<article class="card"><div class="icon">🥇</div><h3>Grand championnat</h3><p>Enchaîne les épreuves pour viser le sommet du classement général.</p><span class="badge">Prévu</span></article>
+<article class="card"><div class="icon">🏆</div><h3>Classement et récompenses</h3><p>Un espace pour suivre les résultats, les points et les performances des pilotes.</p><span class="badge">Prévu</span></article>
+</div>
+</main>
+<footer><strong>ARISTIL RACING</strong><br>© 2026 — Tous droits réservés 🇭🇹</footer>
+</body>
+</html>
