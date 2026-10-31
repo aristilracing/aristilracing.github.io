@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>Championnats | ARISTIL RACING</title>
+<style>
+:root{--bg:#090d18;--panel:#151e2e;--red:#e63946;--muted:#bac4d3;--line:#2b374b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+header{padding:17px 6%;background:#070a12;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:1.5px;font-size:22px}.brand span{color:var(--red)}
+nav{display:flex;gap:15px;flex-wrap:wrap}nav a{color:#c3cada;text-decoration:none;font-size:14px}nav a:hover{color:#fff}
+main{width:min(1050px,92%);margin:auto;padding:42px 0 60px}
+.tag{color:#ff8791;font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(34px,7vw,54px);line-height:1.1;margin:10px 0}.lead{color:var(--muted);max-width:720px}
+.menu{display:flex;gap:9px;flex-wrap:wrap;margin:25px 0 35px;padding:15px;background:#111a29;border:1px solid var(--line);border-radius:12px}
+.menu a{padding:9px 13px;border-radius:7px;background:#202c40;color:#fff;text-decoration:none;font-size:14px}.menu a:hover{background:var(--red)}
+h2{font-size:27px;margin:38px 0 15px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:linear-gradient(145deg,#19263a,#111a29);border:1px solid var(--line);border-radius:13px;padding:20px}
+.icon{font-size:28px}.card h3{margin:7px 0}.card p{color:var(--muted);font-size:14px;margin:0}
+.points{width:100%;border-collapse:collapse;background:var(--panel);border-radius:10px;overflow:hidden}
+.points th,.points td{padding:12px;text-align:left;border-bottom:1px solid var(--line)}.points th{background:#202c40}.points td{color:var(--muted)}
+.notice{margin-top:22px;padding:15px 17px;background:#211e18;border-left:4px solid #e8b34b;border-radius:8px;color:#f1dfb9;font-size:14px}
+footer{text-align:center;padding:23px;color:#8995a8;border-top:1px solid var(--line);font-size:13px}
+@media(max-width:600px){header{justify-content:center;text-align:center}nav{justify-content:center}}
+</style>
+</head>
+<body>
+<header><div class="brand">ARISTIL <span>RACING</span></div><nav aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="jeu.html">Le jeu</a><a href="championnat.html" aria-current="page">Championnat</a></nav></header>
+<main>
+<span class="tag">ESPACE COMPÉTITION</span>
+<h1>🏆 Les championnats</h1>
+<p class="lead">Retrouve dans ce menu toutes les catégories de championnat, les règles de points, le classement et les récompenses d'ARISTIL RACING.</p>
+<nav class="menu" aria-label="Menu des championnats">
+<a href="#debutant">Débutant</a><a href="#amateur">Amateur</a><a href="#professionnel">Professionnel</a><a href="#ultime">Ultime</a><a href="#classement">Classement</a><a href="#points">Points & récompenses</a>
+</nav>
+<section id="debutant"><h2>🥉 Championnat débutant</h2><div class="grid"><article class="card"><div class="icon">🚦</div><h3>Premiers tours</h3><p>Une catégorie d'initiation pour découvrir les épreuves et apprendre à terminer les courses.</p></article></div></section>
+<section id="amateur"><h2>🥈 Championnat amateur</h2><div class="grid"><article class="card"><div class="icon">🏁</div><h3>Défis de progression</h3><p>Une étape supérieure avec des courses destinées aux pilotes qui ont acquis de l'expérience.</p></article></div></section>
+<section id="professionnel"><h2>🥇 Championnat professionnel</h2><div class="grid"><article class="card"><div class="icon">🏎️</div><h3>Compétition avancée</h3><p>Des épreuves plus exigeantes pour viser les meilleures positions.</p></article></div></section>
+<section id="ultime"><h2>🏆 Championnat ultime</h2><div class="grid"><article class="card"><div class="icon">👑</div><h3>Le sommet</h3><p>La catégorie destinée aux pilotes qui veulent relever le plus grand défi du jeu.</p></article></div></section>
+<section id="classement"><h2>📊 Classement des pilotes</h2><table class="points"><thead><tr><th>Position</th><th>Pilote</th><th>Points</th></tr></thead><tbody><tr><td>—</td><td>Le classement sera affiché ici</td><td>—</td></tr></tbody></table></section>
+<section id="points"><h2>⭐ Points et récompenses</h2><div class="grid"><article class="card"><div class="icon">🎯</div><h3>Points de course</h3><p>Les points devront être attribués selon le résultat obtenu à l'arrivée.</p></article><article class="card"><div class="icon">🏅</div><h3>Récompenses</h3><p>Les récompenses permettront de reconnaître les performances et la progression des pilotes.</p></article></div></section>
+<div class="notice"><strong>À noter :</strong> cette page organise les différentes rubriques du championnat. Le classement, les points et les récompenses ne sont pas encore reliés automatiquement aux résultats des courses.</div>
+</main><footer>© 2026 ARISTIL RACING — Tous droits réservés.</footer>
+</body></html>
