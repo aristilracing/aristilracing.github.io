@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d18">
+  <title>Compte pilote — ARISTIL RACING</title>
+  <style>
+    :root{--bg:#090d18;--panel:#141c2c;--red:#e63946;--muted:#b8c0cf;--line:#293449}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;padding:24px 15px;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(ellipse at top,#26334b 0%,#101827 42%,var(--bg) 78%);color:#fff;display:flex;align-items:center;justify-content:center}
+    .wrap{width:100%;max-width:480px}
+    .brand{text-align:center;font-weight:900;letter-spacing:1.5px;font-size:25px;margin-bottom:18px}
+    .brand span{color:var(--red)}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:25px;box-shadow:0 18px 50px #0005}
+    h1{font-size:25px;margin:0 0 7px;text-align:center}
+    .intro{text-align:center;color:var(--muted);font-size:14px;margin:0 0 22px}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+    button,.tab{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:12px;font-weight:bold}
+    .tab{background:#202b40;color:var(--muted)}
+    .tab.active{background:var(--red);color:white}
+    label{display:block;font-size:13px;margin:13px 0 6px;color:#e4e9f2}
+    input{width:100%;padding:13px;border-radius:8px;border:1px solid #3a4963;background:#0c1321;color:#fff;font-size:16px}
+    input:focus{outline:2px solid #e6394680;border-color:var(--red)}
+    .submit{width:100%;background:var(--red);color:white;margin-top:19px}
+    .subtle{width:100%;background:transparent;color:#ff9aa2;margin-top:8px}
+    .back{display:block;text-align:center;color:var(--muted);text-decoration:none;margin-top:18px;font-size:14px}
+    #message{display:none;margin-top:15px;padding:12px;border-radius:8px;background:#0c1321;color:#e7edf7;font-size:14px;overflow-wrap:anywhere}
+    #account{display:none;text-align:center}
+    #account p{color:var(--muted);overflow-wrap:anywhere}
+    .hidden{display:none!important}
+    .note{font-size:12px;color:#9ca8ba;line-height:1.5;margin-top:18px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand">ARISTIL <span>RACING</span></div>
+    <section class="card">
+      <h1>ESPACE PILOTE</h1>
+      <p class="intro">Crée ton compte ou connecte-toi pour retrouver ton espace pilote.</p>
+
+      <div id="auth">
+        <div class="tabs">
+          <button class="tab active" id="loginTab" type="button">Connexion</button>
+          <button class="tab" id="signupTab" type="button">Créer un compte</button>
+        </div>
+        <form id="authForm">
+          <div id="nameGroup" class="hidden">
+            <label for="name">Nom ou pseudonyme</label>
+            <input id="name" type="text" maxlength="40" autocomplete="nickname" placeholder="Ton nom de pilote">
+          </div>
+          <label for="email">Adresse e-mail</label>
+          <input id="email" type="email" required autocomplete="email" placeholder="exemple@email.com">
+          <label for="password">Mot de passe</label>
+          <input id="password" type="password" required minlength="8" autocomplete="current-password" placeholder="8 caractères minimum">
+          <button class="submit" id="submitBtn" type="submit">Se connecter</button>
+        </form>
+        <button class="subtle" id="forgotBtn" type="button">Mot de passe oublié ?</button>
+      </div>
+
+      <div id="account">
+        <h2>Bienvenue, pilote !</h2>
+        <p id="userEmail"></p>
+        <button class="submit" id="logoutBtn" type="button">Se déconnecter</button>
+      </div>
+      <div id="message" role="status" aria-live="polite"></div>
+      <a class="back" href="index.html">← Retour à l'accueil</a>
+      <p class="note">La création d'un compte peut nécessiter une confirmation par e-mail. Ne partage jamais ton mot de passe.</p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // À compléter avec les informations PUBLIQUES du projet Supabase.
+    // Ne jamais placer une clé secret/service_role dans un site web.
+    const SUPABASE_URL = "COLLER_ICI_URL_SUPABASE";
+    const SUPABASE_PUBLISHABLE_KEY = "COLLER_ICI_CLE_PUBLISHABLE_OU_ANON";
+
+    const message = document.getElementById("message");
+    const authPanel = document.getElementById("auth");
+    const accountPanel = document.getElementById("account");
+    const nameGroup = document.getElementById("nameGroup");
+    const passwordInput = document.getElementById("password");
+    const submitBtn = document.getElementById("submitBtn");
+    let mode = "login";
+    let supabaseClient = null;
+
+    function showMessage(text) {
+      message.textContent = text;
+      message.style.display = "block";
+    }
+    function clearMessage() {
+      message.textContent = "";
+      message.style.display = "none";
+    }
+    function setMode(nextMode) {
+      mode = nextMode;
+      clearMessage();
+      document.getElementById("loginTab").classList.toggle("active", mode === "login");
+      document.getElementById("signupTab").classList.toggle("active", mode === "signup");
+      nameGroup.classList.toggle("hidden", mode !== "signup");
+      submitBtn.textContent = mode === "signup" ? "Créer mon compte" : "Se connecter";
+      passwordInput.autocomplete = mode === "signup" ? "new-password" : "current-password";
+      document.getElementById("forgotBtn").classList.toggle("hidden", mode !== "login");
+    }
+    function showAccount(user) {
+      authPanel.classList.add("hidden");
+      accountPanel.style.display = "block";
+      document.getElementById("userEmail").textContent = user.email || "Compte connecté";
+    }
+
+    document.getElementById("loginTab").addEventListener("click", () => setMode("login"));
+    document.getElementById("signupTab").addEventListener("click", () => setMode("signup"));
+
+    document.getElementById("authForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearMessage();
+      if (!supabaseClient) {
+        showMessage("La connexion Supabase n'est pas encore configurée. Ajoute d'abord l'URL du projet et sa clé publique dans ce fichier.");
+        return;
+      }
+      const email = document.getElementById("email").value.trim();
+      const password = passwordInput.value;
+      submitBtn.disabled = true;
+      try {
+        let result;
+        if (mode === "signup") {
+          const displayName = document.getElementById("name").value.trim();
+          result = await supabaseClient.auth.signUp({
+            email, password,
+            options: {
+              data: { display_name: displayName },
+              emailRedirectTo: window.location.origin + "/compte.html"
+            }
+          });
+          if (!result.error) {
+            showMessage("Demande d'inscription envoyée. Consulte ta boîte e-mail pour confirmer ton adresse avant de te connecter.");
+          }
+        } else {
+          result = await supabaseClient.auth.signInWithPassword({ email, password });
+          if (!result.error && result.data.user) showAccount(result.data.user);
+        }
+        if (result.error) showMessage("Impossible de continuer : " + result.error.message);
+      } catch (error) {
+        showMessage("Une erreur est survenue. Vérifie ta connexion Internet puis réessaie.");
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    document.getElementById("forgotBtn").addEventListener("click", async () => {
+      clearMessage();
+      if (!supabaseClient) {
+        showMessage("La connexion Supabase n'est pas encore configurée.");
+        return;
+      }
+      const email = document.getElementById("email").value.trim();
+      if (!email) {
+        showMessage("Entre d'abord ton adresse e-mail dans le champ prévu.");
+        return;
+      }
+      const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + "/compte.html"
+      });
+      showMessage(error ? "Erreur : " + error.message : "Si cette adresse est enregistrée, un e-mail de réinitialisation va être envoyé.");
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      if (!supabaseClient) return;
+      const { error } = await supabaseClient.auth.signOut();
+      if (error) showMessage("Erreur lors de la déconnexion : " + error.message);
+      else {
+        accountPanel.style.display = "none";
+        authPanel.classList.remove("hidden");
+        showMessage("Tu es déconnecté.");
+      }
+    });
+
+    if (SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("COLLER_ICI") &&
+        SUPABASE_PUBLISHABLE_KEY && !SUPABASE_PUBLISHABLE_KEY.includes("COLLER_ICI")) {
+      const { createClient } = window.supabase;
+      supabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+      supabaseClient.auth.getSession().then(({ data }) => {
+        if (data.session?.user) showAccount(data.session.user);
+      });
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        if (session?.user) showAccount(session.user);
+      });
+    } else {
+      showMessage("Page créée : il reste à ajouter l'URL Supabase et la clé publique pour activer les comptes.");
+    }
+  </script>
+</body>
+</html>
