@@ -97,6 +97,41 @@
         <h2>Bienvenue, pilote !</h2>
         <img id="profilePhoto" class="profile-photo" src="https://placehold.co/112x112/0c1321/ffffff?text=Pilote" alt="Photo de profil">
         <p id="userEmail"></p>
+        <section class="profile-edit" style="text-align:left;background:#0c1321;border:1px solid #293449;border-radius:12px;padding:15px;margin:14px 0">
+          <h3 style="margin:0 0 10px">Mettre à jour mon profil</h3>
+          <label for="editLastName">Nom de famille</label>
+          <input id="editLastName" type="text" maxlength="40" autocomplete="family-name" required>
+          <label for="editFirstName">Prénom</label>
+          <input id="editFirstName" type="text" maxlength="40" autocomplete="given-name" required>
+          <label for="editNationality">Nationalité / pays</label>
+          <select id="editNationality" required>
+            <option value="">Choisir ton pays</option>
+            <option value="HT">Haïtienne 🇭🇹</option><option value="DO">Dominicaine 🇩🇴</option>
+            <option value="US">Américaine 🇺🇸</option><option value="CA">Canadienne 🇨🇦</option>
+            <option value="FR">Française 🇫🇷</option><option value="JM">Jamaïcaine 🇯🇲</option>
+            <option value="CU">Cubaine 🇨🇺</option><option value="BR">Brésilienne 🇧🇷</option>
+            <option value="MX">Mexicaine 🇲🇽</option><option value="CO">Colombienne 🇨🇴</option>
+            <option value="GB">Britannique 🇬🇧</option><option value="ES">Espagnole 🇪🇸</option>
+            <option value="PT">Portugaise 🇵🇹</option><option value="DE">Allemande 🇩🇪</option>
+            <option value="IT">Italienne 🇮🇹</option><option value="BE">Belge 🇧🇪</option>
+            <option value="CH">Suisse 🇨🇭</option><option value="NG">Nigériane 🇳🇬</option>
+            <option value="SN">Sénégalaise 🇸🇳</option><option value="CI">Ivoirienne 🇨🇮</option>
+            <option value="MA">Marocaine 🇲🇦</option><option value="IN">Indienne 🇮🇳</option>
+            <option value="JP">Japonaise 🇯🇵</option><option value="CN">Chinoise 🇨🇳</option>
+            <option value="AU">Australienne 🇦🇺</option><option value="OTHER">Autre pays</option>
+          </select>
+          <label for="editLanguage">Langue parlée</label>
+          <select id="editLanguage" required>
+            <option value="">Choisir une langue</option>
+            <option value="Kreyòl ayisyen">Kreyòl ayisyen</option><option value="Français">Français</option>
+            <option value="English">English</option><option value="Español">Español</option>
+            <option value="Português">Português</option><option value="العربية">العربية</option>
+            <option value="中文">中文</option><option value="日本語">日本語</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <button class="submit" id="saveProfileBtn" type="button">Enregistrer les modifications</button>
+          <p id="profileStatus" class="small-status" role="status" aria-live="polite"></p>
+        </section>
         <div class="profile-actions">
           <label for="photoInput">Photo de profil</label>
           <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp">
@@ -151,9 +186,42 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_6ymyAjsXhN9uz75ZMfYuIQ_QFbOW_O2
       authPanel.classList.add("hidden");
       accountPanel.style.display = "block";
       document.getElementById("userEmail").textContent = user.email || "Compte connecté";
+      const profile = user.user_metadata || {};
+      document.getElementById("editLastName").value = profile.last_name || "";
+      document.getElementById("editFirstName").value = profile.first_name || "";
+      document.getElementById("editNationality").value = profile.country_code || "";
+      document.getElementById("editLanguage").value = profile.spoken_language || "";
       const photo = user.user_metadata?.avatar_url;
       document.getElementById("profilePhoto").src = photo || "https://placehold.co/112x112/0c1321/ffffff?text=Pilote";
     }
+
+    document.getElementById("saveProfileBtn").addEventListener("click", async () => {
+      const status = document.getElementById("profileStatus");
+      const lastName = document.getElementById("editLastName").value.trim();
+      const firstName = document.getElementById("editFirstName").value.trim();
+      const countryCode = document.getElementById("editNationality").value;
+      const spokenLanguage = document.getElementById("editLanguage").value;
+      if (!lastName || !firstName || !countryCode || !spokenLanguage) {
+        status.textContent = "Complète tous les champs du profil.";
+        return;
+      }
+      const button = document.getElementById("saveProfileBtn");
+      button.disabled = true;
+      status.textContent = "Enregistrement en cours…";
+      try {
+        const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+        if (userError || !user) throw userError || new Error("Session introuvable.");
+        const displayName = (firstName + " " + lastName).trim();
+        const { error } = await supabaseClient.auth.updateUser({ data: {
+          first_name: firstName, last_name: lastName, display_name: displayName,
+          country_code: countryCode, spoken_language: spokenLanguage
+        }});
+        if (error) throw error;
+        status.textContent = "Profil mis à jour ! Ton nom et ton drapeau seront actualisés dans le jeu.";
+      } catch (error) {
+        status.textContent = "Échec : " + (error.message || "Réessaie.");
+      } finally { button.disabled = false; }
+    });
 
     const photoInput = document.getElementById("photoInput");
     const photoStatus = document.getElementById("photoStatus");
