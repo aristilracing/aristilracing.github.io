@@ -52,8 +52,37 @@
         </div>
         <form id="authForm">
           <div id="nameGroup" class="hidden">
-            <label for="name">Nom ou pseudonyme</label>
-            <input id="name" type="text" maxlength="40" autocomplete="nickname" placeholder="Ton nom de pilote">
+            <label for="lastName">Nom de famille</label>
+            <input id="lastName" type="text" maxlength="40" autocomplete="family-name" placeholder="Nom de famille" required>
+            <label for="firstName">Prénom</label>
+            <input id="firstName" type="text" maxlength="40" autocomplete="given-name" placeholder="Prénom" required>
+            <label for="nationality">Nationalité / pays</label>
+            <select id="nationality" required>
+              <option value="">Choisir ton pays</option>
+              <option value="HT">Haïtienne 🇭🇹</option><option value="DO">Dominicaine 🇩🇴</option>
+              <option value="US">Américaine 🇺🇸</option><option value="CA">Canadienne 🇨🇦</option>
+              <option value="FR">Française 🇫🇷</option><option value="JM">Jamaïcaine 🇯🇲</option>
+              <option value="CU">Cubaine 🇨🇺</option><option value="BR">Brésilienne 🇧🇷</option>
+              <option value="MX">Mexicaine 🇲🇽</option><option value="CO">Colombienne 🇨🇴</option>
+              <option value="GB">Britannique 🇬🇧</option><option value="ES">Espagnole 🇪🇸</option>
+              <option value="PT">Portugaise 🇵🇹</option><option value="DE">Allemande 🇩🇪</option>
+              <option value="IT">Italienne 🇮🇹</option><option value="BE">Belge 🇧🇪</option>
+              <option value="CH">Suisse 🇨🇭</option><option value="NG">Nigériane 🇳🇬</option>
+              <option value="SN">Sénégalaise 🇸🇳</option><option value="CI">Ivoirienne 🇨🇮</option>
+              <option value="MA">Marocaine 🇲🇦</option><option value="IN">Indienne 🇮🇳</option>
+              <option value="JP">Japonaise 🇯🇵</option><option value="CN">Chinoise 🇨🇳</option>
+              <option value="AU">Australienne 🇦🇺</option><option value="OTHER">Autre pays</option>
+            </select>
+            <label for="spokenLanguage">Langue parlée</label>
+            <select id="spokenLanguage" required>
+              <option value="">Choisir une langue</option>
+              <option value="Kreyòl ayisyen">Kreyòl ayisyen</option><option value="Français">Français</option>
+              <option value="English">English</option><option value="Español">Español</option>
+              <option value="Português">Português</option><option value="العربية">العربية</option>
+              <option value="中文">中文</option><option value="日本語">日本語</option>
+              <option value="Autre">Autre</option>
+            </select>
+            <p class="note">Pour protéger la vie privée des joueurs, ARISTIL Racing ne demande pas la date de naissance exacte ni le numéro de téléphone. Ces informations ne sont pas nécessaires pour jouer.</p>
           </div>
           <label for="email">Adresse e-mail</label>
           <input id="email" type="email" required autocomplete="email" placeholder="exemple@email.com">
@@ -202,11 +231,19 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_6ymyAjsXhN9uz75ZMfYuIQ_QFbOW_O2
       try {
         let result;
         if (mode === "signup") {
-          const displayName = document.getElementById("name").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          const firstName = document.getElementById("firstName").value.trim();
+          const countryCode = document.getElementById("nationality").value;
+          const spokenLanguage = document.getElementById("spokenLanguage").value;
+          const displayName = (firstName + " " + lastName).trim();
+          if (!lastName || !firstName || !countryCode || !spokenLanguage) {
+            showMessage("Complète les quatre informations du profil pour créer ton compte.");
+            return;
+          }
           result = await supabaseClient.auth.signUp({
             email, password,
             options: {
-              data: { display_name: displayName },
+              data: { display_name: displayName, first_name: firstName, last_name: lastName, country_code: countryCode, spoken_language: spokenLanguage },
               emailRedirectTo: window.location.origin + "/compte.html"
             }
           });
