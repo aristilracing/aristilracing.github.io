@@ -150,7 +150,45 @@ function drawSupercar(g,cx,cy,cw,ch,color,player=false){
   }
   g.restore();
 }
-function draw(){const c=document.getElementById('game'),g=c.getContext('2d'),w=c.width,h=c.height;g.save();if(shakeFrames>0){g.translate((Math.random()-.5)*12*devicePixelRatio,(Math.random()-.5)*8*devicePixelRatio);shakeFrames--}g.clearRect(0,0,w,h);
+function drawRearCar(g,cx,baseY,width,height,color,isPlayer=false){
+  g.save();const top=baseY-height;
+  g.fillStyle='#0009';g.beginPath();g.ellipse(cx,baseY-height*.05,width*.62,height*.12,0,0,Math.PI*2);g.fill();
+  // Pneus arrière et carrosserie vue de derrière.
+  g.fillStyle='#090d13';g.fillRect(cx-width*.49,baseY-height*.52,width*.18,height*.42);g.fillRect(cx+width*.31,baseY-height*.52,width*.18,height*.42);
+  g.fillStyle=color;g.beginPath();g.moveTo(cx-width*.34,baseY-height*.93);g.lineTo(cx+width*.34,baseY-height*.93);g.lineTo(cx+width*.49,baseY-height*.58);g.lineTo(cx+width*.43,baseY-height*.12);g.quadraticCurveTo(cx,baseY+height*.02,cx-width*.43,baseY-height*.12);g.lineTo(cx-width*.49,baseY-height*.58);g.closePath();g.fill();
+  // Lunette arrière, coffre, pare-chocs et feux.
+  g.fillStyle='#14283a';g.beginPath();g.moveTo(cx-width*.27,baseY-height*.83);g.lineTo(cx+width*.27,baseY-height*.83);g.lineTo(cx+width*.34,baseY-height*.59);g.lineTo(cx-width*.34,baseY-height*.59);g.closePath();g.fill();
+  g.fillStyle='#dce8ef';g.fillRect(cx-width*.28,baseY-height*.55,width*.56,height*.025);
+  g.fillStyle='#f22f43';g.shadowColor='#ff3348';g.shadowBlur=isPlayer?14:5;g.fillRect(cx-width*.39,baseY-height*.43,width*.19,height*.09);g.fillRect(cx+width*.20,baseY-height*.43,width*.19,height*.09);g.shadowBlur=0;
+  g.fillStyle='#252d36';g.fillRect(cx-width*.36,baseY-height*.13,width*.72,height*.07);
+  if(isPlayer){g.fillStyle='#ffd447';g.font='bold '+Math.max(10,width*.12)+'px system-ui';g.textAlign='center';g.fillText('ARISTIL',cx,baseY-height*1.02);}
+  g.restore();
+}
+function drawRearViewScene(g,w,h){
+  const horizon=h*.34,roadBottom=w*.94,roadTop=w*.12,center=w/2;
+  const sky=g.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,'#55b9ed');sky.addColorStop(1,'#d8f2ff');g.fillStyle=sky;g.fillRect(0,0,w,h);
+  g.fillStyle=track==='Jacmel'?'#1686ad':'#276b4a';g.fillRect(0,horizon,w,h-horizon);
+  // Silhouettes de paysages distinctes selon le circuit choisi.
+  if(track==='Port-au-Prince'){for(let i=0;i<13;i++){const bw=w*.035+(i%3)*w*.012,bh=h*(.08+(i%4)*.025);g.fillStyle=['#c68c62','#d8dce0','#bd6258','#e8c77a'][i%4];g.fillRect(i*w/13,horizon-bh,bw,bh);}}
+  else if(track==='Jacmel'){g.fillStyle='#39a9c9';g.fillRect(0,horizon*.72,w,horizon*.28);for(let i=0;i<9;i++){const xx=i*w/9;g.fillStyle=['#efb45c','#e76f62','#e8d59a'][i%3];g.fillRect(xx,horizon*.86,w*.045,h*.045);}}
+  else {g.fillStyle='#24583d';g.beginPath();g.moveTo(0,horizon);g.lineTo(w*.2,h*.09);g.lineTo(w*.38,horizon);g.lineTo(w*.56,h*.12);g.lineTo(w*.77,horizon);g.lineTo(w*.91,h*.18);g.lineTo(w,horizon);g.fill();if(track==='Cap-Haïtien'){g.fillStyle='#756a55';g.fillRect(w*.42,h*.20,w*.22,h*.045);g.fillRect(w*.46,h*.16,w*.14,h*.045);}}
+  // Route en perspective : elle s'élargit vers le bas de l'écran.
+  g.fillStyle='#353b43';g.beginPath();g.moveTo(center-roadTop/2,horizon);g.lineTo(center+roadTop/2,horizon);g.lineTo(center+roadBottom/2,h);g.lineTo(center-roadBottom/2,h);g.closePath();g.fill();
+  g.fillStyle='#e7e1c8';g.beginPath();g.moveTo(center-roadTop/2,horizon);g.lineTo(center-roadTop/2-w*.018,horizon);g.lineTo(center-roadBottom/2-w*.025,h);g.lineTo(center-roadBottom/2,h);g.fill();g.beginPath();g.moveTo(center+roadTop/2,horizon);g.lineTo(center+roadTop/2+w*.018,horizon);g.lineTo(center+roadBottom/2+w*.025,h);g.lineTo(center+roadBottom/2,h);g.fill();
+  // Lignes centrales qui défilent et donnent la sensation de vitesse.
+  for(let i=0;i<12;i++){const z=((i/12+((frame%90)/90))%1),y=horizon+(h-horizon)*z*z,half=w*(.002+z*.009),dash=h*(.008+z*.045);g.fillStyle='#fff4d4';g.fillRect(center-half,y,half*2,dash);}
+  // Végétation en bord de route.
+  for(let i=0;i<12;i++){const z=((i/12+((frame%150)/150))%1),y=horizon+(h-horizon)*z*z,spread=w*(.12+z*.48),size=w*(.008+z*.035);for(const side of [-1,1]){const xx=center+side*spread;g.fillStyle='#60452b';g.fillRect(xx-size*.12,y-size*.1,size*.24,size*1.2);g.fillStyle='#176b43';g.beginPath();g.arc(xx,y-size*.35,size,0,Math.PI*2);g.fill();}}
+  const projectY=(v)=>horizon+(h-horizon)*Math.pow(Math.max(0,Math.min(1,(v+100)/(h+180))),2);
+  const projectX=(lane,v)=>{const z=Math.max(0,Math.min(1,(v+100)/(h+180)));return center+(lane-1.5)*w*(.035+z*.20);};
+  for(const t of traffic){const yy=projectY(t.y),z=Math.max(.12,Math.min(1,(t.y+100)/(h+180)));drawRearCar(g,projectX(t.lane,t.y),yy,w*(.035+z*.10)*t.scale,h*(.06+z*.18)*t.scale,t.color,false);}
+  for(const r of rivals){const yy=projectY(r.y),z=Math.max(.12,Math.min(1,(r.y+100)/(h+180)));drawRearCar(g,projectX(r.lane,r.y),yy,w*(.045+z*.09),h*(.07+z*.17),r.color,false);}
+  const playerW=Math.min(w*.38,Math.max(w*.25,w*.31)),playerH=h*.30;
+  drawRearCar(g,center+(lane-1.5)*w*.13,h*.98,playerW,playerH,carColor(selected),true);
+  if(turboFrames>0){g.fillStyle='#ffd447';g.font='bold 18px system-ui';g.textAlign='center';g.fillText('TURBO !',center,h*.55);}
+}
+let rearView3D=true;
+function draw(){const c=document.getElementById('game'),g=c.getContext('2d'),w=c.width,h=c.height;g.save();if(rearView3D){drawRearViewScene(g,w,h);g.restore();return;}if(shakeFrames>0){g.translate((Math.random()-.5)*12*devicePixelRatio,(Math.random()-.5)*8*devicePixelRatio);shakeFrames--}g.clearRect(0,0,w,h);
   // Paysage tropical inspiré d’Haïti : ciel, collines et végétation
   const sky=g.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#73c7f5');sky.addColorStop(.42,'#c7edff');sky.addColorStop(.43,'#247346');sky.addColorStop(1,'#102d26');g.fillStyle=sky;g.fillRect(0,0,w,h);
   // Décors propres à chaque circuit haïtien (version 24.0).
